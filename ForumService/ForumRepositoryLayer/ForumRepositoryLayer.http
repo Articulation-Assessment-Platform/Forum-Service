@@ -1,0 +1,6 @@
+@ForumRepositoryLayer_HostAddress = http://localhost:5206
+
+GET {{ForumRepositoryLayer_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
