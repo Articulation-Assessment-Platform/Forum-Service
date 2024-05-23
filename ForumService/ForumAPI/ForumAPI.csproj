@@ -20,6 +20,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ForumRepositoryLayer\ForumRepositoryLayer.csproj" />
     <ProjectReference Include="..\ForumServiceLayer\ForumServiceLayer.csproj" />
+    <ProjectReference Include="..\ForumTest\ForumTest.csproj" />
   </ItemGroup>
 
 </Project>

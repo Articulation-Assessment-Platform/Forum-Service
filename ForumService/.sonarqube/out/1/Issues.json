@@ -18,12 +18,12 @@
           "locations": [
             {
               "resultFile": {
-                "uri": "file:///C:/Users/maike/Articulation-Assessment-Platform/Forum-Service/ForumService/ForumServiceLayer/Services/PostService.cs",
+                "uri": "file:///C:/Users/maike/Articulation-Assessment-Platform/Forum-Service/ForumService/ForumServiceLayer/Services/ResponseService.cs",
                 "region": {
-                  "startLine": 74,
-                  "startColumn": 27,
-                  "endLine": 74,
-                  "endColumn": 40
+                  "startLine": 69,
+                  "startColumn": 31,
+                  "endLine": 69,
+                  "endColumn": 44
                 }
               }
             }
@@ -39,12 +39,12 @@
           "locations": [
             {
               "resultFile": {
-                "uri": "file:///C:/Users/maike/Articulation-Assessment-Platform/Forum-Service/ForumService/ForumServiceLayer/Services/ResponseService.cs",
+                "uri": "file:///C:/Users/maike/Articulation-Assessment-Platform/Forum-Service/ForumService/ForumServiceLayer/Services/PostService.cs",
                 "region": {
-                  "startLine": 69,
-                  "startColumn": 31,
-                  "endLine": 69,
-                  "endColumn": 44
+                  "startLine": 71,
+                  "startColumn": 27,
+                  "endLine": 71,
+                  "endColumn": 40
                 }
               }
             }

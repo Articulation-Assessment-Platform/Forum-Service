@@ -9,7 +9,7 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["ForumService/ForumService.csproj", "ForumService/"]
+COPY ["ForumService.csproj", "ForumService/"]
 RUN dotnet restore "./ForumService/ForumService.csproj"
 COPY . .
 WORKDIR "/src/ForumService"

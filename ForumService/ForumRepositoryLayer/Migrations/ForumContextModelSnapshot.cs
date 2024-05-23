@@ -30,8 +30,9 @@ namespace ForumRepositoryLayer.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Audience")
-                        .HasColumnType("integer");
+                    b.Property<string>("Audience")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("CategoryName")
                         .IsRequired()
@@ -46,6 +47,28 @@ namespace ForumRepositoryLayer.Migrations
                     b.ToTable("Forums");
                 });
 
+            modelBuilder.Entity("ForumRepositoryLayer.Entities.LikeEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("PostId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ResponseId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Likes");
+                });
+
             modelBuilder.Entity("ForumRepositoryLayer.Entities.PostEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -53,6 +76,10 @@ namespace ForumRepositoryLayer.Migrations
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Audience")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<int>("AuthorId")
                         .HasColumnType("integer");
@@ -64,41 +91,35 @@ namespace ForumRepositoryLayer.Migrations
                     b.Property<DateTime>("DateTime")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int?>("ForumEntityId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Likes")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("PostId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Privacy")
+                    b.Property<int>("ForumId")
                         .HasColumnType("integer");
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("url")
+                    b.Property<string>("Url")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ForumEntityId");
-
-                    b.HasIndex("PostId");
 
                     b.ToTable("Posts");
                 });
 
             modelBuilder.Entity("ForumRepositoryLayer.Entities.ResponseEntity", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Audience")
+                        .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("AutherId")
+                    b.Property<int>("AuthorId")
                         .HasColumnType("integer");
 
                     b.Property<string>("Content")
@@ -114,69 +135,16 @@ namespace ForumRepositoryLayer.Migrations
                     b.Property<int>("PostId")
                         .HasColumnType("integer");
 
-                    b.Property<string>("ResponseId")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("ResponseId")
+                        .HasColumnType("integer");
 
-                    b.Property<string>("Text")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("url")
+                    b.Property<string>("Url")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PostId");
-
-                    b.HasIndex("ResponseId");
-
                     b.ToTable("Responses");
-                });
-
-            modelBuilder.Entity("ForumRepositoryLayer.Entities.PostEntity", b =>
-                {
-                    b.HasOne("ForumRepositoryLayer.Entities.ForumEntity", null)
-                        .WithMany("Posts")
-                        .HasForeignKey("ForumEntityId");
-
-                    b.HasOne("ForumRepositoryLayer.Entities.PostEntity", "Post")
-                        .WithMany()
-                        .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Post");
-                });
-
-            modelBuilder.Entity("ForumRepositoryLayer.Entities.ResponseEntity", b =>
-                {
-                    b.HasOne("ForumRepositoryLayer.Entities.PostEntity", "Post")
-                        .WithMany("Responses")
-                        .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ForumRepositoryLayer.Entities.ResponseEntity", "Response")
-                        .WithMany()
-                        .HasForeignKey("ResponseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Post");
-
-                    b.Navigation("Response");
-                });
-
-            modelBuilder.Entity("ForumRepositoryLayer.Entities.ForumEntity", b =>
-                {
-                    b.Navigation("Posts");
-                });
-
-            modelBuilder.Entity("ForumRepositoryLayer.Entities.PostEntity", b =>
-                {
-                    b.Navigation("Responses");
                 });
 #pragma warning restore 612, 618
         }

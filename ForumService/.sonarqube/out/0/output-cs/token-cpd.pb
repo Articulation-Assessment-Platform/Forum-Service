@@ -409,79 +409,7 @@ LikeEntity #
 ;!! 
 }"" 	
 }## 
-}$$ å
-ŽC:\Users\maike\Articulation-Assessment-Platform\Forum-Service\ForumService\ForumRepositoryLayer\Repositories\Interfaces\IResponseRepository.cs
-	namespace 	 
-ForumRepositoryLayer
- 
-. 
-Services '
-.' (
-
-Interfaces( 2
-{ 
-public 
-
-	interface 
-IResponseRepository (
-:) *
-IBaseRepository+ :
-<: ;
-ResponseEntity; I
->I J
-{ 
-Task 
-< 
-List 
-< 
-ResponseEntity  
->  !
->! "
-GetByPostId# .
-(. /
-int/ 2
-PostId3 9
-)9 :
-;: ;
-} 
-}		 ×
-ŠC:\Users\maike\Articulation-Assessment-Platform\Forum-Service\ForumService\ForumRepositoryLayer\Repositories\Interfaces\IPostRepository.cs
-	namespace 	 
-ForumRepositoryLayer
- 
-. 
-Services '
-.' (
-
-Interfaces( 2
-{ 
-public 
-
-	interface 
-IPostRepository $
-:% &
-IBaseRepository' 6
-<6 7
-
-PostEntity7 A
->A B
-{ 
-Task 
-< 
-List 
-< 
-
-PostEntity 
-> 
-> 
-GetByForumId +
-(+ ,
-int, /
-ForumId0 7
-)7 8
-;8 9
-} 
-}		 ³	
+}$$ ³	
 ŠC:\Users\maike\Articulation-Assessment-Platform\Forum-Service\ForumService\ForumRepositoryLayer\Repositories\Interfaces\ILikeRepository.cs
 	namespace 	 
 ForumRepositoryLayer
@@ -573,42 +501,7 @@ LikeEntity
 
 : ;
 } 
-} ß
-‹C:\Users\maike\Articulation-Assessment-Platform\Forum-Service\ForumService\ForumRepositoryLayer\Repositories\Interfaces\IForumRepository.cs
-	namespace 	 
-ForumRepositoryLayer
- 
-. 
-Services '
-.' (
-
-Interfaces( 2
-{ 
-public 
-
-	interface 
-IForumRepository %
-:& '
-IBaseRepository( 7
-<7 8
-ForumEntity8 C
->C D
-{ 
-Task 
-< 
-List 
-< 
-ForumEntity 
-> 
-> 
-GetAllForums  ,
-(, -
-string- 3
-audience4 <
-)< =
-;= >
-} 
-}		 ã
+} ã
 ŠC:\Users\maike\Articulation-Assessment-Platform\Forum-Service\ForumService\ForumRepositoryLayer\Repositories\Interfaces\IBaseRepository.cs
 	namespace 	 
 ForumRepositoryLayer
@@ -668,7 +561,114 @@ Interfaces( 2
 }		 
 }
 
- Æ
+ ×
+ŠC:\Users\maike\Articulation-Assessment-Platform\Forum-Service\ForumService\ForumRepositoryLayer\Repositories\Interfaces\IPostRepository.cs
+	namespace 	 
+ForumRepositoryLayer
+ 
+. 
+Services '
+.' (
+
+Interfaces( 2
+{ 
+public 
+
+	interface 
+IPostRepository $
+:% &
+IBaseRepository' 6
+<6 7
+
+PostEntity7 A
+>A B
+{ 
+Task 
+< 
+List 
+< 
+
+PostEntity 
+> 
+> 
+GetByForumId +
+(+ ,
+int, /
+ForumId0 7
+)7 8
+;8 9
+} 
+}		 å
+ŽC:\Users\maike\Articulation-Assessment-Platform\Forum-Service\ForumService\ForumRepositoryLayer\Repositories\Interfaces\IResponseRepository.cs
+	namespace 	 
+ForumRepositoryLayer
+ 
+. 
+Services '
+.' (
+
+Interfaces( 2
+{ 
+public 
+
+	interface 
+IResponseRepository (
+:) *
+IBaseRepository+ :
+<: ;
+ResponseEntity; I
+>I J
+{ 
+Task 
+< 
+List 
+< 
+ResponseEntity  
+>  !
+>! "
+GetByPostId# .
+(. /
+int/ 2
+PostId3 9
+)9 :
+;: ;
+} 
+}		 ß
+‹C:\Users\maike\Articulation-Assessment-Platform\Forum-Service\ForumService\ForumRepositoryLayer\Repositories\Interfaces\IForumRepository.cs
+	namespace 	 
+ForumRepositoryLayer
+ 
+. 
+Services '
+.' (
+
+Interfaces( 2
+{ 
+public 
+
+	interface 
+IForumRepository %
+:& '
+IBaseRepository( 7
+<7 8
+ForumEntity8 C
+>C D
+{ 
+Task 
+< 
+List 
+< 
+ForumEntity 
+> 
+> 
+GetAllForums  ,
+(, -
+string- 3
+audience4 <
+)< =
+;= >
+} 
+}		 Æ
 C:\Users\maike\Articulation-Assessment-Platform\Forum-Service\ForumService\ForumRepositoryLayer\Repositories\ForumRepository.cs
 	namespace 	 
 ForumRepositoryLayer

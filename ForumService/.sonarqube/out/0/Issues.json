@@ -14,11 +14,11 @@
         {
           "ruleId": "CS0108",
           "level": "warning",
-          "message": "'PostRepository._context' hides inherited member 'BaseRepository<PostEntity>._context'. Use the new keyword if hiding was intended.",
+          "message": "'ResponseRepository._context' hides inherited member 'BaseRepository<ResponseEntity>._context'. Use the new keyword if hiding was intended.",
           "locations": [
             {
               "resultFile": {
-                "uri": "file:///C:/Users/maike/Articulation-Assessment-Platform/Forum-Service/ForumService/ForumRepositoryLayer/Repositories/PostRepository.cs",
+                "uri": "file:///C:/Users/maike/Articulation-Assessment-Platform/Forum-Service/ForumService/ForumRepositoryLayer/Repositories/ResponseRepository.cs",
                 "region": {
                   "startLine": 9,
                   "startColumn": 39,
@@ -35,11 +35,11 @@
         {
           "ruleId": "CS0108",
           "level": "warning",
-          "message": "'ResponseRepository._context' hides inherited member 'BaseRepository<ResponseEntity>._context'. Use the new keyword if hiding was intended.",
+          "message": "'PostRepository._context' hides inherited member 'BaseRepository<PostEntity>._context'. Use the new keyword if hiding was intended.",
           "locations": [
             {
               "resultFile": {
-                "uri": "file:///C:/Users/maike/Articulation-Assessment-Platform/Forum-Service/ForumService/ForumRepositoryLayer/Repositories/ResponseRepository.cs",
+                "uri": "file:///C:/Users/maike/Articulation-Assessment-Platform/Forum-Service/ForumService/ForumRepositoryLayer/Repositories/PostRepository.cs",
                 "region": {
                   "startLine": 9,
                   "startColumn": 39,

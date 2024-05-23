@@ -25,7 +25,15 @@ namespace ForumAPI.Controllers
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
             var roleClaim = identity.FindFirst(ClaimTypes.Role);
-            List<ForumModel> forums = await _forumService.GetForums(roleClaim.Value);
+            List<ForumModel> forums = new List<ForumModel>();
+            if(roleClaim == null)
+            {
+                forums = await _forumService.GetForums(null);
+            }
+            else
+            {
+                forums = await _forumService.GetForums(roleClaim.Value);
+            }
 
             if (forums == null) return BadRequest("No forums found.");
 

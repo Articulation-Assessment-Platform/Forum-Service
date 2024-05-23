@@ -1,0 +1,10 @@
+﻿services:
+  forum-service:
+    image: articulation-assessment/forum-service:test
+    container_name: forum-service
+    ports:
+      - "5020:8080"
+      - "5021:443"
+    build:
+      context: .
+      dockerfile: Dockerfile

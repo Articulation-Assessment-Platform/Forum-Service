@@ -1,16 +1,15 @@
+using ForumRepositoryLayer.Entities;
 using ForumRepositoryLayer.Repositories;
 using ForumRepositoryLayer.Repositories.Interfaces;
 using ForumRepositoryLayer.Services.Interfaces;
 using ForumServiceLayer.Services;
 using ForumServiceLayer.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
-builder.Services.AddControllers();
-
 builder.Services.AddScoped<IPostService, PostService>();
 builder.Services.AddScoped<IforumService, ForumService>();
 builder.Services.AddScoped<ILikeService, LikeService>();
@@ -20,6 +19,8 @@ builder.Services.AddScoped<IPostRepository, PostRepository>();
 builder.Services.AddScoped<IForumRepository, ForumRepository>();
 builder.Services.AddScoped<ILikeRepository, LikeRepository>();
 builder.Services.AddScoped<IResponseRepository, ResponseRepository>();
+builder.Services.AddControllers();
+
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -55,15 +56,18 @@ builder.Services.AddSwaggerGen(c =>
         }
     });
 });
+builder.Services.AddDbContext<ForumContext>(options =>
+{
+    options.UseNpgsql(builder.Configuration.GetConnectionString("PostgreSqlConnection"));
+});
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+
+app.UseSwagger();
+app.UseSwaggerUI();
+
 
 app.UseHttpsRedirection();
 

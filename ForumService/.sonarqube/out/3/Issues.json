@@ -161,16 +161,16 @@
         {
           "ruleId": "S101",
           "level": "warning",
-          "message": "Rename class 'ResponseDTO' to match pascal case naming rules, consider using 'ResponseDto'.",
+          "message": "Rename class 'PostDTO' to match pascal case naming rules, consider using 'PostDto'.",
           "locations": [
             {
               "resultFile": {
-                "uri": "file:///C:/Users/maike/Articulation-Assessment-Platform/Forum-Service/ForumService/ForumAPI/DTOs/ResponseDTO.cs",
+                "uri": "file:///C:/Users/maike/Articulation-Assessment-Platform/Forum-Service/ForumService/ForumAPI/DTOs/PostDTO.cs",
                 "region": {
-                  "startLine": 6,
+                  "startLine": 8,
                   "startColumn": 18,
-                  "endLine": 6,
-                  "endColumn": 29
+                  "endLine": 8,
+                  "endColumn": 25
                 }
               }
             }
@@ -182,16 +182,16 @@
         {
           "ruleId": "S101",
           "level": "warning",
-          "message": "Rename class 'PostDTO' to match pascal case naming rules, consider using 'PostDto'.",
+          "message": "Rename class 'ResponseDTO' to match pascal case naming rules, consider using 'ResponseDto'.",
           "locations": [
             {
               "resultFile": {
-                "uri": "file:///C:/Users/maike/Articulation-Assessment-Platform/Forum-Service/ForumService/ForumAPI/DTOs/PostDTO.cs",
+                "uri": "file:///C:/Users/maike/Articulation-Assessment-Platform/Forum-Service/ForumService/ForumAPI/DTOs/ResponseDTO.cs",
                 "region": {
-                  "startLine": 8,
+                  "startLine": 6,
                   "startColumn": 18,
-                  "endLine": 8,
-                  "endColumn": 25
+                  "endLine": 6,
+                  "endColumn": 29
                 }
               }
             }
