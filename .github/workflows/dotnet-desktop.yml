@@ -62,7 +62,7 @@ jobs:
 
     - name: Build and push Docker image
       run: |
-        docker buildx build --push --tag ${{ secrets.DOCKER_USERNAME }}/forum-service:${{ github.sha }} .
+        docker buildx build --push --tag ${{ secrets.DOCKER_USERNAME }}/ForumService:${{ github.sha }} .
       working-directory: ./ForumService/ForumService
 
   deploy:
@@ -79,7 +79,7 @@ jobs:
 
     - name: Deploy to Kubernetes
       run: |
-        kubectl set image deployment/forum-service forum-service=${{ secrets.DOCKER_USERNAME }}/forum-service:${{ github.sha }} --record
+        kubectl set image deployment/forum-service forum-service=${{ secrets.DOCKER_USERNAME }}/ForumService:${{ github.sha }} --record
       env:
         KUBECONFIG: ${{ secrets.KUBECONFIG }}
 
