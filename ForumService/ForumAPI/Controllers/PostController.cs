@@ -19,7 +19,7 @@ namespace ForumAPI.Controllers
             _postService = postService;
         }
         //View all(forum)
-        [HttpGet("get/{ForumId}")]
+        [HttpGet("get/forum/{ForumId}")]
         public async Task<IActionResult> GetForumPosts(int ForumId)
         {
             List<PostModel> posts = await _postService.GetAll(ForumId);

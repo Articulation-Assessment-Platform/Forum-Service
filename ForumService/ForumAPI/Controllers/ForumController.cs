@@ -13,7 +13,7 @@ namespace ForumAPI.Controllers
     [Route("api/[controller]")]
     public class ForumController : Controller
     {
-        IforumService _forumService;
+        private readonly IforumService _forumService;
         public ForumController(IforumService forumService)
         {
             _forumService = forumService;

@@ -1,0 +1,14 @@
+ú
+êC:\Users\maike\Articulation-Assessment-Platform\Forum-Service\ForumService\ForumAPI\obj\Debug\net8.0\ForumAPI.MvcApplicationPartsAssemblyInfo.csutf-8à
+}C:\Users\maike\Articulation-Assessment-Platform\Forum-Service\ForumService\ForumAPI\obj\Debug\net8.0\ForumAPI.AssemblyInfo.csutf-8ü
+ìC:\Users\maike\Articulation-Assessment-Platform\Forum-Service\ForumService\ForumAPI\obj\Debug\net8.0\.NETCoreApp,Version=v8.0.AssemblyAttributes.csutf-8ä
+C:\Users\maike\Articulation-Assessment-Platform\Forum-Service\ForumService\ForumAPI\obj\Debug\net8.0\ForumAPI.GlobalUsings.g.csutf-8g
+^C:\Users\maike\Articulation-Assessment-Platform\Forum-Service\ForumService\ForumAPI\Program.csutf-8p
+gC:\Users\maike\Articulation-Assessment-Platform\Forum-Service\ForumService\ForumAPI\DTOs\ResponseDTO.csutf-8l
+cC:\Users\maike\Articulation-Assessment-Platform\Forum-Service\ForumService\ForumAPI\DTOs\PostDTO.csutf-8l
+cC:\Users\maike\Articulation-Assessment-Platform\Forum-Service\ForumService\ForumAPI\DTOs\LikeDTO.csutf-8m
+dC:\Users\maike\Articulation-Assessment-Platform\Forum-Service\ForumService\ForumAPI\DTOs\ForumDTO.csutf-8~
+uC:\Users\maike\Articulation-Assessment-Platform\Forum-Service\ForumService\ForumAPI\Controllers\ResponseController.csutf-8z
+qC:\Users\maike\Articulation-Assessment-Platform\Forum-Service\ForumService\ForumAPI\Controllers\PostController.csutf-8z
+qC:\Users\maike\Articulation-Assessment-Platform\Forum-Service\ForumService\ForumAPI\Controllers\LikeController.csutf-8{
+rC:\Users\maike\Articulation-Assessment-Platform\Forum-Service\ForumService\ForumAPI\Controllers\ForumController.csutf-8

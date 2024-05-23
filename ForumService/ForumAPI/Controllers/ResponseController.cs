@@ -19,8 +19,8 @@ namespace ForumAPI.Controllers
         }
 
         //View all(forum)
-        [HttpGet("get/{responseId}")]
-        public async Task<IActionResult> GetForumresponses(int responseId)
+        [HttpGet("get/post/{responseId}")]
+        public async Task<IActionResult> GetPostResponses(int responseId)
         {
             List<ResponseModel> responses = await _responseService.GetAll(responseId);
 
@@ -51,7 +51,7 @@ namespace ForumAPI.Controllers
 
         //add
         [HttpPost("add")]
-        public IActionResult Addresponse([FromBody] ResponseDTO p)
+        public IActionResult AddResponse([FromBody] ResponseDTO p)
         {
             ResponseModel response = new ResponseModel
             {
@@ -72,7 +72,7 @@ namespace ForumAPI.Controllers
 
         //delete
         [HttpDelete("delete")]
-        public IActionResult Deleteresponse([FromBody] ResponseDTO p)
+        public IActionResult DeleteResponse([FromBody] ResponseDTO p)
         {
             ResponseModel response = new ResponseModel
             {
@@ -91,7 +91,7 @@ namespace ForumAPI.Controllers
 
         //get 
         [HttpGet("get/{id}")]
-        public async Task<IActionResult> Getresponse(int id)
+        public async Task<IActionResult> GetResponse(int id)
         {
             ResponseModel p = await _responseService.Get(id);
 
