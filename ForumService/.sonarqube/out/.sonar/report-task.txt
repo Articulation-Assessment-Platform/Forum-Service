@@ -2,5 +2,5 @@ projectKey=ForumMicroservice
 serverUrl=http://localhost:9000
 serverVersion=10.5.1.90531
 dashboardUrl=http://localhost:9000/dashboard?id=ForumMicroservice
-ceTaskId=d1dc2211-cee2-42b2-b004-1a20f1ce228a
-ceTaskUrl=http://localhost:9000/api/ce/task?id=d1dc2211-cee2-42b2-b004-1a20f1ce228a
+ceTaskId=ade5cd92-6d17-4e93-971e-27a5692cba1f
+ceTaskUrl=http://localhost:9000/api/ce/task?id=ade5cd92-6d17-4e93-971e-27a5692cba1f

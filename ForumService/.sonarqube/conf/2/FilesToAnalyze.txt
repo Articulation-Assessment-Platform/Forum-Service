@@ -1,5 +1,4 @@
 ﻿C:\Users\maike\Articulation-Assessment-Platform\Forum-Service\ForumService\ForumTest\ServiceTests\ResponseTests.cs
-C:\Users\maike\Articulation-Assessment-Platform\Forum-Service\ForumService\ForumTest\UnitTest1.cs
 C:\Users\maike\.nuget\packages\microsoft.net.test.sdk\17.8.0\build\netcoreapp3.1\Microsoft.NET.Test.Sdk.Program.cs
 C:\Users\maike\.nuget\packages\microsoft.testplatform.testhost\17.8.0\build\netcoreapp3.1\x64\testhost.exe
 C:\Users\maike\.nuget\packages\microsoft.testplatform.testhost\17.8.0\build\netcoreapp3.1\x64\testhost.dll

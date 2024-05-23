@@ -232,169 +232,7 @@ PostEntity8 B
 ; 
 } 	
 } 
-} ³	
-ŠC:\Users\maike\Articulation-Assessment-Platform\Forum-Service\ForumService\ForumRepositoryLayer\Repositories\Interfaces\ILikeRepository.cs
-	namespace 	 
-ForumRepositoryLayer
- 
-. 
-Repositories +
-.+ ,
-
-Interfaces, 6
-{ 
-public 
-
-	interface 
-ILikeRepository $
-:% &
-IBaseRepository' 6
-<6 7
-
-LikeEntity7 A
->A B
-{ 
-Task 
-< 
-List 
-< 
-
-LikeEntity 
-> 
-> 
-GetAllLikesPost .
-(. /
-int/ 2
-postId3 9
-)9 :
-;: ;
-Task		 
-<		 
-List		 
-<		 
-
-LikeEntity		 
->		 
->		 
-GetAllLikesResponse		 2
-(		2 3
-int		3 6
-
-responseId		7 A
-)		A B
-;		B C
-Task
-
- 
-<
-
- 
-List
-
- 
-<
-
- 
-
-LikeEntity
-
- 
->
-
- 
->
-
- 
-GetAllLikesUser
-
- .
-(
-
-. /
-int
-
-/ 2
-userId
-
-3 9
-)
-
-9 :
-;
-
-: ;
-} 
-} å
-ŽC:\Users\maike\Articulation-Assessment-Platform\Forum-Service\ForumService\ForumRepositoryLayer\Repositories\Interfaces\IResponseRepository.cs
-	namespace 	 
-ForumRepositoryLayer
- 
-. 
-Services '
-.' (
-
-Interfaces( 2
-{ 
-public 
-
-	interface 
-IResponseRepository (
-:) *
-IBaseRepository+ :
-<: ;
-ResponseEntity; I
->I J
-{ 
-Task 
-< 
-List 
-< 
-ResponseEntity  
->  !
->! "
-GetByPostId# .
-(. /
-int/ 2
-PostId3 9
-)9 :
-;: ;
-} 
-}		 ß
-‹C:\Users\maike\Articulation-Assessment-Platform\Forum-Service\ForumService\ForumRepositoryLayer\Repositories\Interfaces\IForumRepository.cs
-	namespace 	 
-ForumRepositoryLayer
- 
-. 
-Services '
-.' (
-
-Interfaces( 2
-{ 
-public 
-
-	interface 
-IForumRepository %
-:& '
-IBaseRepository( 7
-<7 8
-ForumEntity8 C
->C D
-{ 
-Task 
-< 
-List 
-< 
-ForumEntity 
-> 
-> 
-GetAllForums  ,
-(, -
-string- 3
-audience4 <
-)< =
-;= >
-} 
-}		 º
+} º
 ~C:\Users\maike\Articulation-Assessment-Platform\Forum-Service\ForumService\ForumRepositoryLayer\Repositories\LikeRepository.cs
 	namespace 	 
 ForumRepositoryLayer
@@ -571,7 +409,42 @@ LikeEntity #
 ;!! 
 }"" 	
 }## 
-}$$ ×
+}$$ å
+ŽC:\Users\maike\Articulation-Assessment-Platform\Forum-Service\ForumService\ForumRepositoryLayer\Repositories\Interfaces\IResponseRepository.cs
+	namespace 	 
+ForumRepositoryLayer
+ 
+. 
+Services '
+.' (
+
+Interfaces( 2
+{ 
+public 
+
+	interface 
+IResponseRepository (
+:) *
+IBaseRepository+ :
+<: ;
+ResponseEntity; I
+>I J
+{ 
+Task 
+< 
+List 
+< 
+ResponseEntity  
+>  !
+>! "
+GetByPostId# .
+(. /
+int/ 2
+PostId3 9
+)9 :
+;: ;
+} 
+}		 ×
 ŠC:\Users\maike\Articulation-Assessment-Platform\Forum-Service\ForumService\ForumRepositoryLayer\Repositories\Interfaces\IPostRepository.cs
 	namespace 	 
 ForumRepositoryLayer
@@ -607,6 +480,133 @@ PostEntity 
 ForumId0 7
 )7 8
 ;8 9
+} 
+}		 ³	
+ŠC:\Users\maike\Articulation-Assessment-Platform\Forum-Service\ForumService\ForumRepositoryLayer\Repositories\Interfaces\ILikeRepository.cs
+	namespace 	 
+ForumRepositoryLayer
+ 
+. 
+Repositories +
+.+ ,
+
+Interfaces, 6
+{ 
+public 
+
+	interface 
+ILikeRepository $
+:% &
+IBaseRepository' 6
+<6 7
+
+LikeEntity7 A
+>A B
+{ 
+Task 
+< 
+List 
+< 
+
+LikeEntity 
+> 
+> 
+GetAllLikesPost .
+(. /
+int/ 2
+postId3 9
+)9 :
+;: ;
+Task		 
+<		 
+List		 
+<		 
+
+LikeEntity		 
+>		 
+>		 
+GetAllLikesResponse		 2
+(		2 3
+int		3 6
+
+responseId		7 A
+)		A B
+;		B C
+Task
+
+ 
+<
+
+ 
+List
+
+ 
+<
+
+ 
+
+LikeEntity
+
+ 
+>
+
+ 
+>
+
+ 
+GetAllLikesUser
+
+ .
+(
+
+. /
+int
+
+/ 2
+userId
+
+3 9
+)
+
+9 :
+;
+
+: ;
+} 
+} ß
+‹C:\Users\maike\Articulation-Assessment-Platform\Forum-Service\ForumService\ForumRepositoryLayer\Repositories\Interfaces\IForumRepository.cs
+	namespace 	 
+ForumRepositoryLayer
+ 
+. 
+Services '
+.' (
+
+Interfaces( 2
+{ 
+public 
+
+	interface 
+IForumRepository %
+:& '
+IBaseRepository( 7
+<7 8
+ForumEntity8 C
+>C D
+{ 
+Task 
+< 
+List 
+< 
+ForumEntity 
+> 
+> 
+GetAllForums  ,
+(, -
+string- 3
+audience4 <
+)< =
+;= >
 } 
 }		 ã
 ŠC:\Users\maike\Articulation-Assessment-Platform\Forum-Service\ForumService\ForumRepositoryLayer\Repositories\Interfaces\IBaseRepository.cs
@@ -1900,7 +1900,7 @@ ResponseIdWW' 1
 ;||  
 }}} 	
 }~~ 
-} ³
+} ¯
 zC:\Users\maike\Articulation-Assessment-Platform\Forum-Service\ForumService\ForumRepositoryLayer\Entities\ResponseEntity.cs
 	namespace 	 
 ForumRepositoryLayer
@@ -1939,7 +1939,12 @@ zC:\Users\maike\Articulation-Assessment-Platform\Forum-Service\ForumService\Foru
 ;		# $
 set		% (
 ;		( )
-}		* +
+}		* +
+=		, -
+string		. 4
+.		4 5
+Empty		5 :
+;		: ;
 public
 
  
@@ -1985,7 +1990,12 @@ ResponseId 
 ;% &
 set' *
 ;* +
-}, -
+}, -
+=. /
+string0 6
+.6 7
+Empty7 <
+;< =
 public 
 DateTime 
 DateTime  
@@ -2003,7 +2013,12 @@ ResponseId 
 ;  
 set! $
 ;$ %
-}& '
+}& '
+=( )
+string* 0
+.0 1
+Empty1 6
+;6 7
 public 
 int 
 Likes 
@@ -2014,7 +2029,7 @@ ResponseId 
 ;# $
 }% &
 } 
-} ”
+} ä
 vC:\Users\maike\Articulation-Assessment-Platform\Forum-Service\ForumService\ForumRepositoryLayer\Entities\PostEntity.cs
 	namespace 	 
 ForumRepositoryLayer
@@ -2063,7 +2078,22 @@ PostEntity 
 & '
 }
 
-( )
+( )
+=
+
+* +
+string
+
+, 2
+.
+
+2 3
+Empty
+
+3 8
+;
+
+8 9
 public 
 string 
 Content 
@@ -2072,7 +2102,12 @@ PostEntity 
 ;# $
 set% (
 ;( )
-}* +
+}* +
+=, -
+string. 4
+.4 5
+Empty5 :
+;: ;
 public 
 int 
 AuthorId 
@@ -2099,7 +2134,12 @@ PostEntity 
 ;$ %
 set& )
 ;) *
-}+ ,
+}+ ,
+=- .
+string/ 5
+.5 6
+Empty6 ;
+;; <
 public 
 string 
 Url 
@@ -2108,7 +2148,12 @@ PostEntity 
 ;  
 set! $
 ;$ %
-}& '
+}& '
+=( )
+string* 0
+.0 1
+Empty1 6
+;6 7
 public 
 int 
 ForumId 
@@ -2170,6 +2215,73 @@ ResponseId 
 set" %
 ;% &
 }' (
+}		 
+}
+
+ ·	
+wC:\Users\maike\Articulation-Assessment-Platform\Forum-Service\ForumService\ForumRepositoryLayer\Entities\ForumEntity.cs
+	namespace 	 
+ForumRepositoryLayer
+ 
+. 
+Entities '
+{ 
+public 
+
+class 
+ForumEntity 
+{ 
+public 
+int 
+Id 
+{ 
+get 
+; 
+set  
+;  !
+}" #
+public 
+string 
+CategoryName "
+{# $
+get% (
+;( )
+set* -
+;- .
+}/ 0
+=1 2
+string3 9
+.9 :
+Empty: ?
+;? @
+public 
+string 
+Description !
+{" #
+get$ '
+;' (
+set) ,
+;, -
+}. /
+=0 1
+string2 8
+.8 9
+Empty9 >
+;> ?
+public 
+string 
+Audience 
+{  
+get! $
+;$ %
+set& )
+;) *
+}+ ,
+=- .
+string/ 5
+.5 6
+Empty6 ;
+;; <
 }		 
 }
 
@@ -2256,56 +2368,4 @@ LikeEntity 
 ;1 2
 }3 4
 } 
-} »
-wC:\Users\maike\Articulation-Assessment-Platform\Forum-Service\ForumService\ForumRepositoryLayer\Entities\ForumEntity.cs
-	namespace 	 
-ForumRepositoryLayer
- 
-. 
-Entities '
-{ 
-public 
-
-class 
-ForumEntity 
-{ 
-public 
-int 
-Id 
-{ 
-get 
-; 
-set  
-;  !
-}" #
-public 
-string 
-CategoryName "
-{# $
-get% (
-;( )
-set* -
-;- .
-}/ 0
-public 
-string 
-Description !
-{" #
-get$ '
-;' (
-set) ,
-;, -
-}. /
-public 
-string 
-Audience 
-{  
-get! $
-;$ %
-set& )
-;) *
-}+ ,
-}		 
-}
-
- 
+} 

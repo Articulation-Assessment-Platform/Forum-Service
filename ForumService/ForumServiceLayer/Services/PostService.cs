@@ -2,9 +2,6 @@
 using ForumRepositoryLayer.Services.Interfaces;
 using ForumServiceLayer.Models;
 using ForumServiceLayer.Services.Interfaces;
-using System.Collections.Generic;
-using System.Reflection.Metadata;
-using System.Threading.Tasks;
 
 namespace ForumServiceLayer.Services
 {
@@ -90,9 +87,9 @@ namespace ForumServiceLayer.Services
             List<PostEntity> posts = await _postRepository.GetByForumId(forumId);
 
             List<PostModel> postModels = new List<PostModel>();
-            foreach(PostEntity post in posts)
+            foreach (PostEntity post in posts)
             {
-                postModels.Add( new PostModel() { Id = post.Id, Title=post.Title, Audience = post.Audience, Content = post.Content, AuthorId = post.AuthorId, DateTime = post.DateTime, ForumId = post.ForumId, Url = post.Url});
+                postModels.Add(new PostModel() { Id = post.Id, Title = post.Title, Audience = post.Audience, Content = post.Content, AuthorId = post.AuthorId, DateTime = post.DateTime, ForumId = post.ForumId, Url = post.Url });
             }
 
             return postModels;
