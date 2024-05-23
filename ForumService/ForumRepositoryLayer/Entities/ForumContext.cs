@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ForumRepositoryLayer.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace ForumRepositoryLayer.Entities
 {
@@ -8,8 +9,9 @@ namespace ForumRepositoryLayer.Entities
         { }
 
         public DbSet<ForumEntity> Forums { get; set; }
-        public DbSet<PostEntity> Children { get; set; }
+        public DbSet<PostEntity> Posts { get; set; }
         public DbSet<ResponseEntity> Responses { get; set; }
+        public DbSet<LikeEntity> Likes { get; set; }
 
     }
 }

@@ -21,8 +21,4 @@
     <ProjectReference Include="..\ForumServiceLayer\ForumServiceLayer.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DTOs\" />
-  </ItemGroup>
-
 </Project>

@@ -1,22 +1,119 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ForumAPI.DTOs;
+using ForumServiceLayer.Models;
+using ForumServiceLayer.Services;
+using ForumServiceLayer.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ForumAPI.Controllers
 {
+    [Authorize]
+    [ApiController]
+    [Route("api/[controller]")]
     public class ResponseController : Controller
     {
-        public IActionResult Index()
+        private readonly IResponseService _responseService;
+        public ResponseController(IResponseService responseService)
         {
-            return View();
+            _responseService = responseService;
         }
 
-        //View all post
+        //View all(forum)
+        [HttpGet("get/{responseId}")]
+        public async Task<IActionResult> GetForumresponses(int responseId)
+        {
+            List<ResponseModel> responses = await _responseService.GetAll(responseId);
 
-        //Add
+            if (responses == null)
+            {
+                return BadRequest("No response found in this forum.");
+            }
 
-        //Delete
+            List<ResponseDTO> ps = new List<ResponseDTO>();
+            foreach (ResponseModel p in responses)
+            {
+                ps.Add(new ResponseDTO()
+                {
+                    Id = p.Id,
+                    Content = p.Content,
+                    AuthorId = p.AuthorId,
+                    DateTime = p.DateTime,
+                    Audience = p.Audience,
+                    Url = p.Url,
+                    PostId = p.PostId,
+                    ResponseId = p.ResponseId
+                });
+            }
 
-        //Add(reference)
 
-        //like
+            return Ok(ps);
+        }
+
+        //add
+        [HttpPost("add")]
+        public IActionResult Addresponse([FromBody] ResponseDTO p)
+        {
+            ResponseModel response = new ResponseModel
+            {
+                Id = p.Id,
+                Content = p.Content,
+                AuthorId = p.AuthorId,
+                DateTime = p.DateTime,
+                Audience = p.Audience,
+                Url = p.Url,
+                PostId = p.PostId,
+                ResponseId = p.ResponseId
+
+            };
+            _responseService.Create(response);
+            return Ok();
+        }
+
+
+        //delete
+        [HttpDelete("delete")]
+        public IActionResult Deleteresponse([FromBody] ResponseDTO p)
+        {
+            ResponseModel response = new ResponseModel
+            {
+                Id = p.Id,
+                Content = p.Content,
+                AuthorId = p.AuthorId,
+                DateTime = p.DateTime,
+                Audience = p.Audience,
+                Url = p.Url,
+                PostId = p.PostId,
+                ResponseId = p.ResponseId
+            };
+            _responseService.Delete(response);
+            return Ok();
+        }
+
+        //get 
+        [HttpGet("get/{id}")]
+        public async Task<IActionResult> Getresponse(int id)
+        {
+            ResponseModel p = await _responseService.Get(id);
+
+            if (p == null)
+            {
+                return BadRequest("No response found with this id.");
+            }
+
+            ResponseDTO response = new ResponseDTO()
+            {
+                Id = p.Id,
+                Content = p.Content,
+                AuthorId = p.AuthorId,
+                DateTime = p.DateTime,
+                Audience = p.Audience,
+                Url = p.Url,
+                PostId = p.PostId,
+                ResponseId = p.ResponseId
+            };
+
+            return Ok(response);
+        }
+
     }
 }

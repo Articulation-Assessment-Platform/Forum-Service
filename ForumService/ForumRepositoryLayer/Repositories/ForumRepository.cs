@@ -1,29 +1,23 @@
 ﻿using ForumRepositoryLayer.Entities;
-using ForumServiceLayer.Models;
-using ForumServiceLayer.Services.Interfaces;
+using ForumRepositoryLayer.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace ForumRepositoryLayer.Repositories
 {
-    public class ForumRepository : IBaseRepository<ForumModel>, IForumRepository
+    public class ForumRepository : BaseRepository<ForumEntity>, IForumRepository
     {
-        public Task<ForumModel> AddAsync(ForumModel entity)
-        {
-            throw new NotImplementedException();
+        public ForumRepository(ForumContext context) : base(context)
+        { 
+
         }
 
-        public Task<ForumModel> GetByIdAsync(int id)
+        public Task<List<ForumEntity>> GetAllForums(string audience)
         {
-            throw new NotImplementedException();
-        }
-
-        public void Remove(ForumModel entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(ForumModel entity)
-        {
-            throw new NotImplementedException();
+            return _context.Forums
+                .Where(f => (audience == null && f.Audience == "None") ||
+                            (audience == "SpeechTherapist" && (f.Audience == "SpeechTherapist" || f.Audience == "All")) ||
+                            (audience == "Parent" && (f.Audience == "Parents" || f.Audience == "All")))
+                .ToListAsync();
         }
     }
 }

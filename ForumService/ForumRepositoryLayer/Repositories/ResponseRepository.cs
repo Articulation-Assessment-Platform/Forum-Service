@@ -1,28 +1,24 @@
-﻿using ForumServiceLayer.Models;
-using ForumServiceLayer.Services.Interfaces;
+﻿using ForumRepositoryLayer.Entities;
+using ForumRepositoryLayer.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace ForumRepositoryLayer.Repositories
 {
-    public class ResponseRepository : IBaseRepository<ResponseModel>, IResponseRepository
+    public class ResponseRepository : BaseRepository<ResponseEntity>, IResponseRepository
     {
-        public Task<ResponseModel> AddAsync(ResponseModel entity)
+        private readonly ForumContext _context;
+        public ResponseRepository(ForumContext context) : base(context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
 
-        public Task<ResponseModel> GetByIdAsync(int id)
+        public async Task<List<ResponseEntity>> GetByPostId(int PostId)
         {
-            throw new NotImplementedException();
-        }
+            List<ResponseEntity> responses = await _context.Set<ResponseEntity>()
+                .Where(e => e.PostId == PostId)
+                .ToListAsync();
 
-        public void Remove(ResponseModel entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(ResponseModel entity)
-        {
-            throw new NotImplementedException();
+            return responses;
         }
     }
 }

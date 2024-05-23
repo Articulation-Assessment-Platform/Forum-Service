@@ -4,15 +4,14 @@ namespace ForumRepositoryLayer.Entities
 {
     public class ResponseEntity
     {
-        public string Id { get; set; }
-        public int AutherId { get; set; }
-        public string Text { get; set; }
+        public int Id { get; set; }
+        public int AuthorId { get; set; }
         public string Content { get; set; }
-        public PostEntity Post { get; set; }
-        public ResponseEntity Response { get; set; }
+        public int PostId { get; set; }
+        public int ResponseId { get; set; }
+        public string Audience {  get; set; }
         public DateTime DateTime { get; set; }
-
-        public List<Blob> Attachements { get; set; }
+        public string Url { get; set; }
         public int Likes { get; set; }
 
     }

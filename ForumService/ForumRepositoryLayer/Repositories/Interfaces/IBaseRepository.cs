@@ -1,4 +1,4 @@
-﻿namespace ForumServiceLayer.Services.Interfaces
+﻿namespace ForumRepositoryLayer.Services.Interfaces
 {
     public interface IBaseRepository<TEntity> where TEntity : class
     {
