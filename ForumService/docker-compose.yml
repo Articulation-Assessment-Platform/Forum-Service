@@ -1,10 +1,37 @@
-﻿services:
-  forum-service:
-    image: articulation-assessment/forum-service:test
-    container_name: forum-service
-    ports:
-      - "5020:8080"
-      - "5021:443"
+version: '3.4'
+
+services:
+  forumservice:
+    image: ${DOCKER_REGISTRY-}forumservice
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: ForumAPI/Dockerfile
+    ports:
+      - "5200:5200"
+      - "5201:5201"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__DefaultConnection=localhost=db;Database=ForumDatabase;Username=postgres;Password=Password_postgres
+    networks:
+      - proxybackend
+    depends_on:
+      - forumdb
+
+  forumdb:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Password_postgres
+      POSTGRES_DB: ForumDatabase
+    ports:
+      - "5433:5433"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - proxybackend
+
+networks:
+  proxybackend:
+
+volumes:
+  pgdata:
