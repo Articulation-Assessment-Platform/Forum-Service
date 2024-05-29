@@ -2,36 +2,15 @@ version: '3.4'
 
 services:
   forumservice:
-    image: ${DOCKER_REGISTRY-}forumservice
+    image: ${DOCKER_REGISTRY-}forumapi
+    networks:
+        - backend
     build:
       context: .
       dockerfile: ForumAPI/Dockerfile
-    ports:
-      - "5200:5200"
-      - "5201:5201"
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Production
-      - ConnectionStrings__DefaultConnection=localhost=db;Database=ForumDatabase;Username=postgres;Password=Password_postgres
-    networks:
-      - proxybackend
-    depends_on:
-      - forumdb
-
-  forumdb:
-    image: postgres:latest
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: Password_postgres
-      POSTGRES_DB: ForumDatabase
-    ports:
-      - "5433:5433"
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-    networks:
-      - proxybackend
 
 networks:
-  proxybackend:
-
-volumes:
-  pgdata:
+  backend:
+    name: backend
+    external: true
+    driver: bridge

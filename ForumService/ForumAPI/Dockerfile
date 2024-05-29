@@ -3,26 +3,25 @@
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER app
 WORKDIR /app
-EXPOSE 5200
-EXPOSE 5201
+EXPOSE 8080
+EXPOSE 8081
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
-WORKDIR /src/..
+WORKDIR /src
 COPY ["ForumAPI/ForumAPI.csproj", "ForumAPI/"]
 COPY ["ForumRepositoryLayer/ForumRepositoryLayer.csproj", "ForumRepositoryLayer/"]
 COPY ["ForumServiceLayer/ForumServiceLayer.csproj", "ForumServiceLayer/"]
-COPY ["ForumTest/ForumTest.csproj", "ForumTest/"]
 RUN dotnet restore "./ForumAPI/ForumAPI.csproj"
 COPY . .
-WORKDIR "/src/.."
-RUN dotnet build "ForumAPI/ForumAPI.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR "/src/ForumAPI"
+RUN dotnet build "./ForumAPI.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "ForumAPI/ForumAPI.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./ForumAPI.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "ForumAPI.dll"] 
+ENTRYPOINT ["dotnet", "ForumAPI.dll"]

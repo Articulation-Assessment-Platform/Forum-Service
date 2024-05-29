@@ -34,6 +34,8 @@ builder.Services.AddDbContext<ForumContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("PostgreSqlConnection"));
 });
 
+builder.Services.AddHealthChecks();
+
 var app = builder.Build();
 
 app.UseHealthChecks("/health");
