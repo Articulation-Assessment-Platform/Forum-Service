@@ -33,6 +33,17 @@ builder.Services.AddDbContext<ForumContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("PostgreSqlConnection"));
 });
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.WithOrigins("http://localhost:5173")
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+
+});
+
 
 builder.Services.AddHealthChecks();
 
@@ -44,6 +55,7 @@ app.UseHealthChecks("/health");
 
 app.UseSwagger();
 app.UseSwaggerUI();
+app.UseCors();
 
 
 app.UseHttpsRedirection();
