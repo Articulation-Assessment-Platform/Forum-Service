@@ -139,5 +139,4 @@ jobs:
 
       - name: Apply Kubernetes manifests
         run: |
-          kubectl apply -f "ForumService/deployment.yml"
-          kubectl apply -f "ForumService/service.yml"
+          kubectl apply -f "ForumService/aks-manifest.yml"
