@@ -30,5 +30,5 @@ spec:
     app: forum-service
   ports:
     - protocol: TCP
-      port: 8080
-      targetPort: 5220
+      port: 5220
+      targetPort: 8080
