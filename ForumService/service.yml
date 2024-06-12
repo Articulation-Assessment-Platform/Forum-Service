@@ -9,4 +9,4 @@ spec:
     - protocol: TCP
       port: 5220
       targetPort: 5220
-  type: LoadBalancer 
+  type: ClusterIP 
