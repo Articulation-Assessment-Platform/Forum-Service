@@ -40,14 +40,14 @@ jobs:
   
       - name: Restore dependencies
         run: dotnet restore 'ForumService/ForumTest/ForumTest.csproj'
-  
-      - name: Install ReportGenerator
-        run: dotnet tool install dotnet-reportgenerator-globaltool --tool-path .
+ 
   
       - name: Test and collect coverage
         run: |
-          dotnet tool install -g dotnet-reportgenerator-globaltool
-          dotnet test 'ForumService/ForumTest/ForumTest.csproj' --configuration Release --collect "Code Coverage"
+         dotnet test 'ForumService/ForumTest/ForumTest.csproj' --configuration Release /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+         dotnet tool install -g dotnet-reportgenerator-globaltool
+         reportgenerator -reports:ForumService/ForumTest/coverage.opencover.xml -targetdir:coverage -reporttypes:Html
+
   sonarqube:
     needs: test
     name: Build and analyze
@@ -91,9 +91,8 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         shell: powershell
         run: |
-          ./.sonar/scanner/dotnet-sonarscanner begin /k:"Articulation-Assessment-Platform_Forum-Service" /o:"articulation-assessment-platform" /d:sonar.token=${{ secrets.SONAR_TOKEN }} /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
+          ./.sonar/scanner/dotnet-sonarscanner begin /k:"Articulation-Assessment-Platform_Forum-Service" /o:"articulation-assessment-platform" /d:sonar.token=${{ secrets.SONAR_TOKEN }} /d:sonar.host.url="https://sonarcloud.io"           /d:sonar.cs.opencover.reportsPaths=coverage.opencover.xml /d:sonar.coverage.exclusions="**/Tests/**"
           dotnet build 'ForumService/ForumAPI/ForumAPI.csproj' --no-incremental
-          dotnet test 'ForumService/ForumTest/ForumTest.csproj' --collect "Code Coverage"
           ./.sonar/scanner/dotnet-sonarscanner end /d:sonar.token=${{ secrets.SONAR_TOKEN }}
 
   docker:

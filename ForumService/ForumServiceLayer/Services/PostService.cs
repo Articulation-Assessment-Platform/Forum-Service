@@ -16,6 +16,9 @@ namespace ForumServiceLayer.Services
 
         public async Task<PostModel> Create(PostModel post)
         {
+            if (post == null)
+                throw new ArgumentException("Post cannot be null.");
+
             PostEntity postEntity = new PostEntity()
             {
                 Title = post.Title,
@@ -33,6 +36,9 @@ namespace ForumServiceLayer.Services
 
         public async Task Update(PostModel post)
         {
+            if (post == null)
+                throw new ArgumentException("Post cannot be null.");
+
             PostEntity existingPost = await _postRepository.GetByIdAsync(post.Id);
             if (existingPost != null)
             {
@@ -51,6 +57,9 @@ namespace ForumServiceLayer.Services
 
         public async Task Delete(PostModel post)
         {
+            if (post == null)
+                throw new ArgumentException("Post cannot be null.");
+
             PostEntity existingPost = await _postRepository.GetByIdAsync(post.Id);
             if (existingPost != null)
             {
@@ -64,7 +73,13 @@ namespace ForumServiceLayer.Services
 
         public async Task<PostModel> Get(int id)
         {
+            if (id <= 0)
+                throw new ArgumentException("Invalid post ID.");
+
             PostEntity postEntity = await _postRepository.GetByIdAsync(id);
+            if (postEntity == null)
+                throw new ArgumentException("Post not found.");
+
             return TransformBack(postEntity);
         }
 
@@ -84,12 +99,24 @@ namespace ForumServiceLayer.Services
 
         public async Task<List<PostModel>> GetAll(int forumId)
         {
-            List<PostEntity> posts = await _postRepository.GetByForumId(forumId);
+            if (forumId <= 0)
+                throw new ArgumentException("Invalid forum ID.");
 
+            List<PostEntity> posts = await _postRepository.GetByForumId(forumId);
             List<PostModel> postModels = new List<PostModel>();
             foreach (PostEntity post in posts)
             {
-                postModels.Add(new PostModel() { Id = post.Id, Title = post.Title, Audience = post.Audience, Content = post.Content, AuthorId = post.AuthorId, DateTime = post.DateTime, ForumId = post.ForumId, Url = post.Url });
+                postModels.Add(new PostModel()
+                {
+                    Id = post.Id,
+                    Title = post.Title,
+                    Audience = post.Audience,
+                    Content = post.Content,
+                    AuthorId = post.AuthorId,
+                    DateTime = post.DateTime,
+                    ForumId = post.ForumId,
+                    Url = post.Url
+                });
             }
 
             return postModels;

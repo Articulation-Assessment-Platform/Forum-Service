@@ -1,5 +1,7 @@
-﻿using ForumRepositoryLayer.Entities;
-using ForumRepositoryLayer.Repositories;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using ForumRepositoryLayer.Entities;
 using ForumRepositoryLayer.Services.Interfaces;
 using ForumServiceLayer.Models;
 using ForumServiceLayer.Services.Interfaces;
@@ -9,6 +11,7 @@ namespace ForumServiceLayer.Services
     public class ResponseService : IResponseService
     {
         private readonly IResponseRepository _responseRepository;
+
         public ResponseService(IResponseRepository responseRepository)
         {
             _responseRepository = responseRepository;
@@ -16,6 +19,11 @@ namespace ForumServiceLayer.Services
 
         public async Task<ResponseModel> Create(ResponseModel p)
         {
+            if (p == null)
+            {
+                throw new ArgumentException("Response cannot be null.");
+            }
+
             ResponseEntity responseEntity = new ResponseEntity()
             {
                 Content = p.Content,
@@ -32,6 +40,11 @@ namespace ForumServiceLayer.Services
 
         public async Task Update(ResponseModel Response)
         {
+            if (Response == null)
+            {
+                throw new ArgumentException("Response cannot be null.");
+            }
+
             ResponseEntity existingResponse = await _responseRepository.GetByIdAsync(Response.Id);
             if (existingResponse != null)
             {
@@ -49,6 +62,11 @@ namespace ForumServiceLayer.Services
 
         public async Task Delete(ResponseModel Response)
         {
+            if (Response == null)
+            {
+                throw new ArgumentException("Response cannot be null.");
+            }
+
             ResponseEntity existingResponse = await _responseRepository.GetByIdAsync(Response.Id);
             if (existingResponse != null)
             {
@@ -62,7 +80,17 @@ namespace ForumServiceLayer.Services
 
         public async Task<ResponseModel> Get(int id)
         {
+            if (id <= 0)
+            {
+                throw new ArgumentException("Invalid response ID.");
+            }
+
             ResponseEntity ResponseEntity = await _responseRepository.GetByIdAsync(id);
+            if (ResponseEntity == null)
+            {
+                throw new ArgumentException("Response not found.");
+            }
+
             return TransformBack(ResponseEntity);
         }
 
@@ -82,6 +110,11 @@ namespace ForumServiceLayer.Services
 
         public async Task<List<ResponseModel>> GetAll(int postId)
         {
+            if (postId <= 0)
+            {
+                throw new ArgumentException("Invalid post ID.");
+            }
+
             List<ResponseEntity> Responses = await _responseRepository.GetByPostId(postId);
 
             List<ResponseModel> ResponseModels = new List<ResponseModel>();
