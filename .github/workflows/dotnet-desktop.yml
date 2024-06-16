@@ -92,7 +92,7 @@ jobs:
         run: |
           ./.sonar/scanner/dotnet-sonarscanner begin /k:"Articulation-Assessment-Platform_Forum-Service" /o:"articulation-assessment-platform" /d:sonar.token=${{ secrets.SONAR_TOKEN }} /d:sonar.host.url="https://sonarcloud.io"           /d:sonar.cs.opencover.reportsPaths=coverage.opencover.xml /d:sonar.coverage.exclusions="**/Tests/**"
           dotnet build 'ForumService/ForumAPI/ForumAPI.csproj' --no-incremental
-          ./.sonar/scanner/dotnet-sonarscanner end /d:sonar.token=${{ secrets.SONAR_TOKEN }}
+          ./.sonar/scanner/dotnet-sonarscanner end /d:sonar.token=${{ secrets.SONAR_TOKEN }} /d:sonar.cs.opencover.reportsPaths="ForumService/ForumTest/coverage.opencover.xml"
 
   docker:
     needs: sonarqube
