@@ -45,8 +45,6 @@ jobs:
       - name: Test and collect coverage
         run: |
           dotnet test 'ForumService/ForumTest/ForumTest.csproj' --configuration Release /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
-          dotnet tool install -g dotnet-reportgenerator-globaltool
-          reportgenerator -reports:ForumService/ForumTest/coverage.opencover.xml -targetdir:coverage -reporttypes:Html
   sonarqube:
     needs: test
     name: Build and analyze
@@ -90,6 +88,9 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         shell: powershell
         run: |
+          dotnet test 'ForumService/ForumTest/ForumTest.csproj' --configuration Release /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+          dotnet tool install -g dotnet-reportgenerator-globaltool
+          reportgenerator -reports:ForumService/ForumTest/coverage.opencover.xml -targetdir:coverage -reporttypes:Html
           dotnet tool install -g dotnet-coverage
           ./.sonar/scanner/dotnet-sonarscanner begin /k:"Articulation-Assessment-Platform_Forum-Service" /o:"articulation-assessment-platform" /d:sonar.token=${{ secrets.SONAR_TOKEN }} /d:sonar.host.url="https://sonarcloud.io"           /d:sonar.cs.opencover.reportsPaths='ForumService/ForumTest/coverage.opencover.xml' /d:sonar.coverage.exclusions="**/Tests/**"
           dotnet build 'ForumService/ForumAPI/ForumAPI.csproj' --no-incremental
