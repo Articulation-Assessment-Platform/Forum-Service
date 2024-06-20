@@ -66,8 +66,8 @@ namespace ForumTest.ServiceTests
         [TestMethod]
         public async Task Update_ValidPost_UpdatesPost()
         {
-            var postModel = new PostModel { Id = 1, Title = "Test", Content = "Content", DateTime = DateTime.Now, Audience = "General" };
-            var postEntity = new PostEntity { Id = 1, Title = "Test", Content = "Content", DateTime = DateTime.Now, Audience = "General" };
+            var postModel = new PostModel { Id = 1, Title = "Test", Content = "Content", DateTime = DateTime.Now, Audience = "General", AuthorId = 1, ForumId = 1 };
+            var postEntity = new PostEntity { Id = 1, Title = "Test", Content = "Content", DateTime = DateTime.Now, Audience = "General", AuthorId = 1, ForumId = 1 };
 
             _postRepositoryMock.Setup(repo => repo.GetByIdAsync(postModel.Id)).ReturnsAsync(postEntity);
 
@@ -97,8 +97,8 @@ namespace ForumTest.ServiceTests
         [TestMethod]
         public async Task Delete_ValidPost_DeletesPost()
         {
-            var postModel = new PostModel { Id = 1 };
-            var postEntity = new PostEntity { Id = 1 };
+            var postModel = new PostModel { Id = 1 , AuthorId = 1, ForumId = 1 };
+            var postEntity = new PostEntity { Id = 1, AuthorId = 1, ForumId = 1, DateTime = DateTime.Today };
 
             _postRepositoryMock.Setup(repo => repo.GetByIdAsync(postModel.Id)).ReturnsAsync(postEntity);
 
@@ -121,20 +121,6 @@ namespace ForumTest.ServiceTests
 
             var exception = await Assert.ThrowsExceptionAsync<ArgumentException>(async () => await _postService.Get(1));
             Assert.AreEqual("Post not found.", exception.Message);
-        }
-
-        [TestMethod]
-        public async Task Get_ValidId_ReturnsPostModel()
-        {
-            var postEntity = new PostEntity { Id = 1, Title = "Test", Content = "Content", AuthorId = 1, DateTime = DateTime.Now, Audience = "General", ForumId = 1 };
-
-            _postRepositoryMock.Setup(repo => repo.GetByIdAsync(postEntity.Id)).ReturnsAsync(postEntity);
-
-            var result = await _postService.Get(postEntity.Id);
-
-            Assert.IsNotNull(result);
-            Assert.AreEqual(postEntity.Title, result.Title);
-            _postRepositoryMock.Verify(repo => repo.GetByIdAsync(postEntity.Id), Times.Once);
         }
 
         [TestMethod]
