@@ -29,7 +29,7 @@ namespace ForumTest.ServiceTests
         [TestMethod]
         public async Task Create_ValidResponse_ReturnsResponseModel()
         {
-            var responseModel = new ResponseModel { Content = "Test", AuthorId = 1, DateTime = DateTime.Now, Audience = "General", Url = "http://example.com", ResponseId = 1 };
+            var responseModel = new ResponseModel { Content = "Test", AuthorId = 1, DateTime = DateTime.Now, Audience = "General", Url = "http://example.com", ResponseId = 1, PostId=1 };
             var responseEntity = new ResponseEntity { Id = 1, Content = "Test", AuthorId = 1, DateTime = DateTime.Now, Audience = "General", Url = "http://example.com", ResponseId = 1 };
 
             _responseRepositoryMock.Setup(repo => repo.AddAsync(It.IsAny<ResponseEntity>())).ReturnsAsync(responseEntity);
@@ -51,7 +51,7 @@ namespace ForumTest.ServiceTests
         [TestMethod]
         public async Task Update_ResponseNotFound_ThrowsArgumentException()
         {
-            var responseModel = new ResponseModel { Id = 1, Content = "Test" };
+            var responseModel = new ResponseModel { Id = 1, Content = "Test", AuthorId = 1, DateTime = DateTime.Today, PostId = 1 };
 
             _responseRepositoryMock.Setup(repo => repo.GetByIdAsync(responseModel.Id)).ReturnsAsync((ResponseEntity)null);
 
@@ -62,7 +62,7 @@ namespace ForumTest.ServiceTests
         [TestMethod]
         public async Task Update_ValidResponse_UpdatesResponse()
         {
-            var responseModel = new ResponseModel { Id = 1, Content = "Test", DateTime = DateTime.Now, Audience = "General" };
+            var responseModel = new ResponseModel { Id = 1, Content = "Test", DateTime = DateTime.Now, Audience = "General", AuthorId=1, PostId=1 };
             var responseEntity = new ResponseEntity { Id = 1, Content = "Test", DateTime = DateTime.Now, Audience = "General" };
 
             _responseRepositoryMock.Setup(repo => repo.GetByIdAsync(responseModel.Id)).ReturnsAsync(responseEntity);
@@ -82,7 +82,7 @@ namespace ForumTest.ServiceTests
         [TestMethod]
         public async Task Delete_ResponseNotFound_ThrowsArgumentException()
         {
-            var responseModel = new ResponseModel { Id = 1 };
+            var responseModel = new ResponseModel { Id = 1, Content = "Test", DateTime = DateTime.Now, Audience = "General", AuthorId = 1, PostId = 1 };
 
             _responseRepositoryMock.Setup(repo => repo.GetByIdAsync(responseModel.Id)).ReturnsAsync((ResponseEntity)null);
 
@@ -93,7 +93,7 @@ namespace ForumTest.ServiceTests
         [TestMethod]
         public async Task Delete_ValidResponse_DeletesResponse()
         {
-            var responseModel = new ResponseModel { Id = 1 };
+            var responseModel = new ResponseModel { Id = 1, Content = "Test", DateTime = DateTime.Now, Audience = "General", AuthorId = 1, PostId = 1 };
             var responseEntity = new ResponseEntity { Id = 1 };
 
             _responseRepositoryMock.Setup(repo => repo.GetByIdAsync(responseModel.Id)).ReturnsAsync(responseEntity);
