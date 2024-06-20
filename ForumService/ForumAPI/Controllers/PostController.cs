@@ -7,7 +7,7 @@ using System.Data;
 
 namespace ForumAPI.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "SpeechTherapist")]
     [ApiController]
     [Route("api/[controller]")]
     public class PostController : Controller
@@ -51,7 +51,7 @@ namespace ForumAPI.Controllers
 
         //add
         [HttpPost("add")]
-        public IActionResult AddPost([FromBody] PostDTO p)
+        public async Task<IActionResult> AddPost([FromBody] PostDTO p)
         {
             PostModel post = new PostModel
             {
@@ -64,8 +64,8 @@ namespace ForumAPI.Controllers
                 ForumId = p.ForumId
                 
             };
-            _postService.Create(post);
-            return Ok();
+            PostModel postCreated = await _postService.Create(post);
+            return Ok(postCreated);
         }
 
 
@@ -110,7 +110,36 @@ namespace ForumAPI.Controllers
 
             return Ok(post);
         }
+        [HttpGet("get/publicforum")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetPublicForumPosts()
+        {
+            List<PostModel> posts = await _postService.GetAll(2);
 
+            if (posts == null)
+            {
+                return BadRequest("No post found in this forum.");
+            }
+
+            List<PostDTO> ps = new List<PostDTO>();
+            foreach (PostModel p in posts)
+            {
+                ps.Add(new PostDTO()
+                {
+                    Id = p.Id,
+                    Title = p.Title,
+                    Content = p.Content,
+                    AuthorId = p.AuthorId,
+                    DateTime = p.DateTime,
+                    Audience = p.Audience,
+                    Url = p.Url,
+                    ForumId = p.ForumId
+                });
+            }
+
+
+            return Ok(ps);
+        }
 
     }
 }
