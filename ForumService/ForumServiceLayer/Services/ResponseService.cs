@@ -104,7 +104,8 @@ namespace ForumServiceLayer.Services
                 DateTime = r.DateTime,
                 Audience = r.Audience,
                 Url = r.Url,
-                ResponseId = r.ResponseId
+                ResponseId = r.ResponseId,
+                PostId = r.PostId
             };
         }
 
@@ -128,7 +129,8 @@ namespace ForumServiceLayer.Services
                     DateTime = r.DateTime,
                     Audience = r.Audience,
                     Url = r.Url,
-                    ResponseId = r.ResponseId
+                    ResponseId = r.ResponseId,
+                    PostId = r.PostId
                 });
             }
 

@@ -50,7 +50,8 @@ namespace ForumAPI.Controllers
                 {
                     Id = l.Id,
                     UserId = l.UserId,
-                    ResponseId = l.ResponseId
+                    ResponseId = l.ResponseId,
+                    PostId = l.PostId
 
                 });
             }
