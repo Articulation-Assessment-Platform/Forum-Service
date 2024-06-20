@@ -101,18 +101,10 @@ namespace ForumAPI.Controllers
 
 
         //delete
-        [HttpDelete("delete")]
-        public IActionResult DeletePost([FromBody] PostDTO p)
+        [HttpDelete("delete/{postId")]
+        public IActionResult DeletePost(int postId)
         {
-            PostModel post = new PostModel
-            {
-                Id = p.Id,
-                Title = p.Title,
-                Content = p.Content,
-                AuthorId = p.AuthorId,
-
-            };
-            _postService.Delete(post);
+            _postService.Delete(postId);
             return Ok();
         }
 

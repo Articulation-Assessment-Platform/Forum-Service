@@ -55,12 +55,12 @@ namespace ForumServiceLayer.Services
             }
         }
 
-        public async Task Delete(PostModel post)
+        public async Task Delete(int id)
         {
-            if (post == null)
-                throw new ArgumentException("Post cannot be null.");
+            if (id <= 0)
+                throw new ArgumentException("Invalid post ID.");
 
-            PostEntity existingPost = await _postRepository.GetByIdAsync((int)post.Id);
+            PostEntity existingPost = await _postRepository.GetByIdAsync(id);
             if (existingPost != null)
             {
                 _postRepository.Remove(existingPost);
