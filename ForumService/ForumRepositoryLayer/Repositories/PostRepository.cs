@@ -20,6 +20,15 @@ namespace ForumRepositoryLayer.Repositories
 
             return posts;
         }
+
+        public async Task<List<PostEntity>> GetByUserId(int userId)
+        {
+            List<PostEntity> posts = await _context.Set<PostEntity>()
+                .Where(e => e.AuthorId == userId)
+                .ToListAsync();
+
+            return posts;
+        }
     }
 
 }

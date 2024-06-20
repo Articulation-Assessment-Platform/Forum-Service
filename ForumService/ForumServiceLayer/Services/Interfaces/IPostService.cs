@@ -9,6 +9,7 @@ namespace ForumServiceLayer.Services.Interfaces
         Task Delete(PostModel post);
         Task<PostModel> Get(int id);
         Task<List<PostModel>> GetAll(int forumId);
+        Task<List<PostModel>> GetAllUser(int userId);
 
     }
 }

@@ -49,6 +49,37 @@ namespace ForumAPI.Controllers
             return Ok(ps);
         }
 
+        [HttpGet("get/user/{UserId}")]
+        public async Task<IActionResult> GetUserPosts(int UserId)
+        {
+            List<PostModel> posts = await _postService.GetAllUser(UserId);
+
+            if (posts == null)
+            {
+                return BadRequest("No post found for this user.");
+            }
+
+            List<PostDTO> ps = new List<PostDTO>();
+            foreach (PostModel p in posts)
+            {
+                ps.Add(new PostDTO()
+                {
+                    Id = p.Id,
+                    Title = p.Title,
+                    Content = p.Content,
+                    AuthorId = p.AuthorId,
+                    DateTime = p.DateTime,
+                    Audience = p.Audience,
+                    Url = p.Url,
+                    ForumId = p.ForumId
+                });
+            }
+
+
+            return Ok(ps);
+        }
+
+
         //add
         [HttpPost("add")]
         public async Task<IActionResult> AddPost([FromBody] PostDTO p)

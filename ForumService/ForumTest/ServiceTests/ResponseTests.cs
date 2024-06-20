@@ -53,7 +53,7 @@ namespace ForumTest.ServiceTests
         {
             var responseModel = new ResponseModel { Id = 1, Content = "Test", AuthorId = 1, DateTime = DateTime.Today, PostId = 1 };
 
-            _responseRepositoryMock.Setup(repo => repo.GetByIdAsync(responseModel.Id)).ReturnsAsync((ResponseEntity)null);
+            _responseRepositoryMock.Setup(repo => repo.GetByIdAsync((int)responseModel.Id)).ReturnsAsync((ResponseEntity)null);
 
             var exception = await Assert.ThrowsExceptionAsync<ArgumentException>(async () => await _responseService.Update(responseModel));
             Assert.AreEqual("There is no response found to update.", exception.Message);
@@ -65,7 +65,7 @@ namespace ForumTest.ServiceTests
             var responseModel = new ResponseModel { Id = 1, Content = "Test", DateTime = DateTime.Now, Audience = "General", AuthorId=1, PostId=1 };
             var responseEntity = new ResponseEntity { Id = 1, Content = "Test", DateTime = DateTime.Now, Audience = "General" };
 
-            _responseRepositoryMock.Setup(repo => repo.GetByIdAsync(responseModel.Id)).ReturnsAsync(responseEntity);
+            _responseRepositoryMock.Setup(repo => repo.GetByIdAsync((int)responseModel.Id)).ReturnsAsync(responseEntity);
 
             await _responseService.Update(responseModel);
 
@@ -84,7 +84,7 @@ namespace ForumTest.ServiceTests
         {
             var responseModel = new ResponseModel { Id = 1, Content = "Test", DateTime = DateTime.Now, Audience = "General", AuthorId = 1, PostId = 1 };
 
-            _responseRepositoryMock.Setup(repo => repo.GetByIdAsync(responseModel.Id)).ReturnsAsync((ResponseEntity)null);
+            _responseRepositoryMock.Setup(repo => repo.GetByIdAsync((int)responseModel.Id)).ReturnsAsync((ResponseEntity)null);
 
             var exception = await Assert.ThrowsExceptionAsync<ArgumentException>(async () => await _responseService.Delete(responseModel));
             Assert.AreEqual("There is no Response with this information.", exception.Message);
@@ -96,7 +96,7 @@ namespace ForumTest.ServiceTests
             var responseModel = new ResponseModel { Id = 1, Content = "Test", DateTime = DateTime.Now, Audience = "General", AuthorId = 1, PostId = 1 };
             var responseEntity = new ResponseEntity { Id = 1 };
 
-            _responseRepositoryMock.Setup(repo => repo.GetByIdAsync(responseModel.Id)).ReturnsAsync(responseEntity);
+            _responseRepositoryMock.Setup(repo => repo.GetByIdAsync((int)responseModel.Id)).ReturnsAsync(responseEntity);
 
             await _responseService.Delete(responseModel);
 

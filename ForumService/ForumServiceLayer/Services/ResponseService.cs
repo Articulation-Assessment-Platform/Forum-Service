@@ -45,7 +45,7 @@ namespace ForumServiceLayer.Services
                 throw new ArgumentException("Response cannot be null.");
             }
 
-            ResponseEntity existingResponse = await _responseRepository.GetByIdAsync(Response.Id);
+            ResponseEntity existingResponse = await _responseRepository.GetByIdAsync((int)Response.Id);
             if (existingResponse != null)
             {
                 existingResponse.Content = Response.Content;
@@ -67,7 +67,7 @@ namespace ForumServiceLayer.Services
                 throw new ArgumentException("Response cannot be null.");
             }
 
-            ResponseEntity existingResponse = await _responseRepository.GetByIdAsync(Response.Id);
+            ResponseEntity existingResponse = await _responseRepository.GetByIdAsync((int)Response.Id);
             if (existingResponse != null)
             {
                 _responseRepository.Remove(existingResponse);

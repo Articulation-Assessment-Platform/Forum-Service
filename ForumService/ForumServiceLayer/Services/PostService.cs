@@ -39,7 +39,7 @@ namespace ForumServiceLayer.Services
             if (post == null)
                 throw new ArgumentException("Post cannot be null.");
 
-            PostEntity existingPost = await _postRepository.GetByIdAsync(post.Id);
+            PostEntity existingPost = await _postRepository.GetByIdAsync((int)post.Id);
             if (existingPost != null)
             {
                 existingPost.Title = post.Title;
@@ -60,7 +60,7 @@ namespace ForumServiceLayer.Services
             if (post == null)
                 throw new ArgumentException("Post cannot be null.");
 
-            PostEntity existingPost = await _postRepository.GetByIdAsync(post.Id);
+            PostEntity existingPost = await _postRepository.GetByIdAsync((int)post.Id);
             if (existingPost != null)
             {
                 _postRepository.Remove(existingPost);
@@ -103,6 +103,31 @@ namespace ForumServiceLayer.Services
                 throw new ArgumentException("Invalid forum ID.");
 
             List<PostEntity> posts = await _postRepository.GetByForumId(forumId);
+            List<PostModel> postModels = new List<PostModel>();
+            foreach (PostEntity post in posts)
+            {
+                postModels.Add(new PostModel()
+                {
+                    Id = post.Id,
+                    Title = post.Title,
+                    Audience = post.Audience,
+                    Content = post.Content,
+                    AuthorId = post.AuthorId,
+                    DateTime = post.DateTime,
+                    ForumId = post.ForumId,
+                    Url = post.Url
+                });
+            }
+
+            return postModels;
+        }
+
+        public async Task<List<PostModel>> GetAllUser(int userId)
+        {
+            if (userId <= 0)
+                throw new ArgumentException("Invalid user ID.");
+
+            List<PostEntity> posts = await _postRepository.GetByUserId(userId);
             List<PostModel> postModels = new List<PostModel>();
             foreach (PostEntity post in posts)
             {
