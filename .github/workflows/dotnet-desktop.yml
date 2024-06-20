@@ -140,7 +140,7 @@ jobs:
 
       - name: Apply Kubernetes manifests
         run: |
-          kubectl apply -f "ForumService/aks-manifest.yml"
+          kubectl replace -f "ForumService/aks-manifest.yml"
 
   automated-api-tests:
     needs: deploy
