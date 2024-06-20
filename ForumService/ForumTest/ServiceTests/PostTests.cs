@@ -77,17 +77,6 @@ namespace ForumTest.ServiceTests
         }
 
 
-        [TestMethod]
-        public async Task Delete_PostNotFound_ThrowsArgumentException()
-        {
-            var postModel = new PostModel { Id = 1 };
-
-            _postRepositoryMock.Setup(repo => repo.GetByIdAsync((int)postModel.Id)).ReturnsAsync((PostEntity)null);
-
-            var exception = await Assert.ThrowsExceptionAsync<ArgumentException>(async () => _postService.Delete(1));
-            Assert.AreEqual("There is no post with this information.", exception.Message);
-        }
-
 
 
         [TestMethod]

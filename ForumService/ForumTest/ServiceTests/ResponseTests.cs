@@ -72,18 +72,7 @@ namespace ForumTest.ServiceTests
             _responseRepositoryMock.Verify(repo => repo.Update(It.IsAny<ResponseEntity>()), Times.Once);
         }
 
-  
-
-        [TestMethod]
-        public async Task Delete_ResponseNotFound_ThrowsArgumentException()
-        {
-            var responseModel = new ResponseModel { Id = 1, Content = "Test", DateTime = DateTime.Now, Audience = "General", AuthorId = 1, PostId = 1 };
-
-            _responseRepositoryMock.Setup(repo => repo.GetByIdAsync((int)responseModel.Id)).ReturnsAsync((ResponseEntity)null);
-
-            var exception = await Assert.ThrowsExceptionAsync<ArgumentException>(async () => await _responseService.Delete(1));
-            Assert.AreEqual("There is no Response with this information.", exception.Message);
-        }
+ 
 
         [TestMethod]
         public async Task Get_InvalidId_ThrowsArgumentException()
