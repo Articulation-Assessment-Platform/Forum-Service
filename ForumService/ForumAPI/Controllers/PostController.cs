@@ -101,7 +101,7 @@ namespace ForumAPI.Controllers
 
 
         //delete
-        [HttpDelete("delete/{postId")]
+        [HttpDelete("delete/{postId}")]
         public IActionResult DeletePost(int postId)
         {
             _postService.Delete(postId);
