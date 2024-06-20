@@ -55,20 +55,21 @@ namespace ForumServiceLayer.Services
             }
         }
 
-        public async Task Delete(int id)
+        public async Task Delete(PostModel post)
         {
-            if (id <= 0)
-                throw new ArgumentException("Invalid post ID.");
-
-            PostEntity existingPost = await _postRepository.GetByIdAsync(id);
-            if (existingPost != null)
+            PostEntity postEntity = new PostEntity()
             {
-                _postRepository.Remove(existingPost);
-            }
-            else
-            {
-                throw new ArgumentException("There is no post with this information.");
-            }
+                Id = post.Id,
+                Title = post.Title,
+                Content = post.Content,
+                AuthorId = post.AuthorId,
+                DateTime = post.DateTime,
+                Audience = post.Audience,
+                Url = post.Url,
+                ForumId = post.ForumId
+            };
+            _postRepository.Remove(postEntity);
+            
         }
 
         public async Task<PostModel> Get(int id)

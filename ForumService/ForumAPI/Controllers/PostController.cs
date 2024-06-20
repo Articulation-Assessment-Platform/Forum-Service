@@ -102,9 +102,10 @@ namespace ForumAPI.Controllers
 
         //delete
         [HttpDelete("delete/{postId}")]
-        public IActionResult DeletePost(int postId)
+        public async Task<IActionResult> DeletePost(int postId)
         {
-            _postService.Delete(postId);
+            PostModel p = await _postService.Get(postId);
+            await _postService.Delete(p);
             return Ok();
         }
 

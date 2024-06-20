@@ -76,12 +76,6 @@ namespace ForumTest.ServiceTests
             _postRepositoryMock.Verify(repo => repo.Update(It.IsAny<PostEntity>()), Times.Once);
         }
 
-        [TestMethod]
-        public async Task Delete_NullPost_ThrowsArgumentException()
-        {
-            var exception = await Assert.ThrowsExceptionAsync<ArgumentException>(async () => await _postService.Delete(0));
-            Assert.AreEqual("Invalid post ID.", exception.Message);
-        }
 
         [TestMethod]
         public async Task Delete_PostNotFound_ThrowsArgumentException()
@@ -90,7 +84,7 @@ namespace ForumTest.ServiceTests
 
             _postRepositoryMock.Setup(repo => repo.GetByIdAsync((int)postModel.Id)).ReturnsAsync((PostEntity)null);
 
-            var exception = await Assert.ThrowsExceptionAsync<ArgumentException>(async () => await _postService.Delete(1));
+            var exception = await Assert.ThrowsExceptionAsync<ArgumentException>(async () => await _postService.Delete(postModel));
             Assert.AreEqual("There is no post with this information.", exception.Message);
         }
 
@@ -102,7 +96,7 @@ namespace ForumTest.ServiceTests
 
             _postRepositoryMock.Setup(repo => repo.GetByIdAsync((int)postModel.Id)).ReturnsAsync(postEntity);
 
-            await _postService.Delete(1);
+            await _postService.Delete(postModel);
 
             _postRepositoryMock.Verify(repo => repo.Remove(It.IsAny<PostEntity>()), Times.Once);
         }
