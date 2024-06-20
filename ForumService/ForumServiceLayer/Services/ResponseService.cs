@@ -60,22 +60,10 @@ namespace ForumServiceLayer.Services
             }
         }
 
-        public async Task Delete(ResponseModel Response)
+        public async Task Delete(int id)
         {
-            if (Response == null)
-            {
-                throw new ArgumentException("Response cannot be null.");
-            }
+           _responseRepository.Remove(id);
 
-            ResponseEntity existingResponse = await _responseRepository.GetByIdAsync((int)Response.Id);
-            if (existingResponse != null)
-            {
-                _responseRepository.Remove(existingResponse);
-            }
-            else
-            {
-                throw new ArgumentException("There is no Response with this information.");
-            }
         }
 
         public async Task<ResponseModel> Get(int id)

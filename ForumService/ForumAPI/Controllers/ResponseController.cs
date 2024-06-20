@@ -85,7 +85,7 @@ namespace ForumAPI.Controllers
                 PostId = p.PostId,
                 ResponseId = p.ResponseId
             };
-            _responseService.Delete(response);
+            _responseService.Delete((int)response.Id);
             return Ok();
         }
 

@@ -104,9 +104,17 @@ namespace ForumAPI.Controllers
         [HttpDelete("delete/{postId}")]
         public async Task<IActionResult> DeletePost(int postId)
         {
-            PostModel p = await _postService.Get(postId);
-            await _postService.Delete(p);
-            return Ok();
+            try
+            {
+                _postService.Delete(postId);
+
+                return Ok(); 
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions appropriately (log, return StatusCode, etc.)
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
         }
 
         //get 

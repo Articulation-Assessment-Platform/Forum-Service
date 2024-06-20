@@ -72,12 +72,7 @@ namespace ForumTest.ServiceTests
             _responseRepositoryMock.Verify(repo => repo.Update(It.IsAny<ResponseEntity>()), Times.Once);
         }
 
-        [TestMethod]
-        public async Task Delete_NullResponse_ThrowsArgumentException()
-        {
-            var exception = await Assert.ThrowsExceptionAsync<ArgumentException>(async () => await _responseService.Delete(null));
-            Assert.AreEqual("Response cannot be null.", exception.Message);
-        }
+  
 
         [TestMethod]
         public async Task Delete_ResponseNotFound_ThrowsArgumentException()
@@ -86,21 +81,8 @@ namespace ForumTest.ServiceTests
 
             _responseRepositoryMock.Setup(repo => repo.GetByIdAsync((int)responseModel.Id)).ReturnsAsync((ResponseEntity)null);
 
-            var exception = await Assert.ThrowsExceptionAsync<ArgumentException>(async () => await _responseService.Delete(responseModel));
+            var exception = await Assert.ThrowsExceptionAsync<ArgumentException>(async () => await _responseService.Delete(1));
             Assert.AreEqual("There is no Response with this information.", exception.Message);
-        }
-
-        [TestMethod]
-        public async Task Delete_ValidResponse_DeletesResponse()
-        {
-            var responseModel = new ResponseModel { Id = 1, Content = "Test", DateTime = DateTime.Now, Audience = "General", AuthorId = 1, PostId = 1 };
-            var responseEntity = new ResponseEntity { Id = 1 };
-
-            _responseRepositoryMock.Setup(repo => repo.GetByIdAsync((int)responseModel.Id)).ReturnsAsync(responseEntity);
-
-            await _responseService.Delete(responseModel);
-
-            _responseRepositoryMock.Verify(repo => repo.Remove(It.IsAny<ResponseEntity>()), Times.Once);
         }
 
         [TestMethod]

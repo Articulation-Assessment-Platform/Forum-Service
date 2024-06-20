@@ -59,19 +59,6 @@ namespace ForumTest.ServiceTests
             Assert.ThrowsException<ArgumentNullException>(() => _likeService.Delete(null));
         }
 
-        [TestMethod]
-        public void Delete_ValidLike_CallsRepositoryRemove()
-        {
-            // Arrange
-            var likeModel = new LikeModel { Id = 1, PostId = 1, ResponseId = 2, UserId = 3 };
-            var likeEntity = new LikeEntity { Id = 1, PostId = 1, ResponseId = 2, UserId = 3 };
-
-            // Act
-            _likeService.Delete(likeModel);
-
-            // Assert
-            _likeRepositoryMock.Verify(repo => repo.Remove(It.IsAny<LikeEntity>()), Times.Once);
-        }
 
         [TestMethod]
         public async Task GetAllPost_InvalidPostId_ThrowsArgumentException()

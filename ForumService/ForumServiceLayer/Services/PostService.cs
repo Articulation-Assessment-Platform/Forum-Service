@@ -55,20 +55,9 @@ namespace ForumServiceLayer.Services
             }
         }
 
-        public async Task Delete(PostModel post)
+        public async void Delete(int id)
         {
-            PostEntity postEntity = new PostEntity()
-            {
-                Id = post.Id,
-                Title = post.Title,
-                Content = post.Content,
-                AuthorId = post.AuthorId,
-                DateTime = post.DateTime,
-                Audience = post.Audience,
-                Url = post.Url,
-                ForumId = post.ForumId
-            };
-            _postRepository.Remove(postEntity);
+            _postRepository.Remove(id);
             
         }
 

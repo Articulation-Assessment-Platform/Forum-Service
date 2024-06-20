@@ -33,10 +33,20 @@
             _context.SaveChanges();
         }
 
-        public void Remove(TEntity entity)
+        public void Remove(int id)
         {
-            _context.Set<TEntity>().Remove(entity);
-            _context.SaveChanges();
+            // Retrieve the entity by its ID
+            var entity = _context.Set<TEntity>().Find(id);
+
+            // Check if the entity exists
+            if (entity != null)
+            {
+                // Remove the entity
+                _context.Set<TEntity>().Remove(entity);
+
+                // Save changes to the database
+                _context.SaveChanges();
+            }
         }
     }
 

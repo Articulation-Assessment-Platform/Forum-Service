@@ -56,7 +56,7 @@ namespace ForumServiceLayer.Services
                 UserId = like.UserId
             };
 
-            _likeRepository.Remove(likeEntity);
+            _likeRepository.Remove((int)likeEntity.Id);
         }
 
         public async Task<List<LikeModel>> GetAllPost(int postId)
