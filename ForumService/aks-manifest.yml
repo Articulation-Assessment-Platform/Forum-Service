@@ -51,7 +51,7 @@ spec:
     kind: Deployment
     name: forum-service
   minReplicas: 1
-  maxReplicas: 4
+  maxReplicas: 3
   metrics:
     - type: Resource
       resource:
