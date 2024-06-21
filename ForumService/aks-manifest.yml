@@ -1,4 +1,3 @@
-# combined-manifest.yml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -35,7 +34,28 @@ metadata:
 spec:
   selector:
     app: forum-service
-  ports:
+  ports: 
     - protocol: TCP
       port: 5220
       targetPort: 8080
+
+---
+
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: forum-service-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: forum-service
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 50
