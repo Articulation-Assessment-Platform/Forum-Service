@@ -55,7 +55,7 @@ namespace ServiceLayer.Services
             }
         }
 
-        public async void Delete(int id)
+        public void Delete(int id)
         {
             _postRepository.Remove(id);
             
@@ -73,7 +73,7 @@ namespace ServiceLayer.Services
             return TransformBack(postEntity);
         }
 
-        private PostModel TransformBack(PostEntity postEntity)
+        private static PostModel TransformBack(PostEntity postEntity)
         {
             return new PostModel()
             {

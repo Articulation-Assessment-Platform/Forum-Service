@@ -60,7 +60,7 @@ namespace ServiceLayer.Services
             }
         }
 
-        public async Task Delete(int id)
+        public void Delete(int id)
         {
            _responseRepository.Remove(id);
 
@@ -82,7 +82,7 @@ namespace ServiceLayer.Services
             return TransformBack(ResponseEntity);
         }
 
-        private ResponseModel TransformBack(ResponseEntity r)
+        private static ResponseModel TransformBack(ResponseEntity r)
         {
             return new ResponseModel()
             {

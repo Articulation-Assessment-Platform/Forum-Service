@@ -105,7 +105,7 @@ namespace ForumAPI.Controllers
             return Ok(MapToDtoList(posts));
         }
 
-        private PostDto MapToDto(PostModel post)
+        private static PostDto MapToDto(PostModel post)
         {
             return new PostDto
             {

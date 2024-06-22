@@ -6,7 +6,7 @@ namespace RepositoryLayer.Repositories
 {
     public class LikeRepository : BaseRepository<LikeEntity>, ILikeRepository
     {
-        private readonly ForumContext _context;
+        private new readonly ForumContext _context;
         public LikeRepository(ForumContext context) : base(context)
         {
             _context = context;

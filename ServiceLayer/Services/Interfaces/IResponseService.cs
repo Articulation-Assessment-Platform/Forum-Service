@@ -6,7 +6,7 @@ namespace ServiceLayer.Services.Interfaces
     {
         Task<ResponseModel> Create(ResponseModel p);
         Task Update(ResponseModel Response);
-        Task Delete(int id);
+        void Delete(int id);
         Task<ResponseModel> Get(int id);
         Task<List<ResponseModel>> GetAll(int postId);
     }

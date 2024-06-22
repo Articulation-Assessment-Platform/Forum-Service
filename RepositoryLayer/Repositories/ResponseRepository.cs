@@ -6,7 +6,7 @@ namespace RepositoryLayer.Repositories
 {
     public class ResponseRepository : BaseRepository<ResponseEntity>, IResponseRepository
     {
-        private readonly ForumContext _context;
+        private new readonly ForumContext _context;
         public ResponseRepository(ForumContext context) : base(context)
         {
             _context = context;
