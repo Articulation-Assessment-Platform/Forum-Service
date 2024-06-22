@@ -120,7 +120,7 @@ namespace ForumAPI.Controllers
             };
         }
 
-        private List<PostDto> MapToDtoList(IEnumerable<PostModel> posts)
+        private static List<PostDto> MapToDtoList(IEnumerable<PostModel> posts)
         {
             return posts.Select(p => MapToDto(p)).ToList();
         }
