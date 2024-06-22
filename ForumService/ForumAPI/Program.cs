@@ -43,31 +43,26 @@ builder.Services.AddAuthentication(options =>
         IssuerSigningKey = new SymmetricSecurityKey(key)
     };
 
-    // Enable logging for debugging token validation
     options.Events = new JwtBearerEvents
     {
         OnAuthenticationFailed = context =>
         {
             var logger = context.HttpContext.RequestServices.GetRequiredService<ILogger<Program>>();
-            logger.LogError("Authentication failed.", context.Exception);
             return Task.CompletedTask;
         },
         OnChallenge = context =>
         {
             var logger = context.HttpContext.RequestServices.GetRequiredService<ILogger<Program>>();
-            logger.LogError("OnChallenge error", context.Error, context.ErrorDescription);
             return Task.CompletedTask;
         },
         OnMessageReceived = context =>
         {
             var logger = context.HttpContext.RequestServices.GetRequiredService<ILogger<Program>>();
-            logger.LogInformation("Token received: {Token}", context.Token);
             return Task.CompletedTask;
         }
     };
 });
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -108,11 +103,8 @@ builder.Services.AddCors(options =>
 
 });
 
-
 var app = builder.Build();
 
-
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
@@ -124,7 +116,7 @@ app.UseHttpsRedirection();
 
 app.UseCors();
 
-app.UseAuthentication(); // Ensure this comes before UseAuthorization
+app.UseAuthentication(); 
 app.UseAuthorization();
 
 app.MapControllers();
