@@ -10,11 +10,6 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["ForumAPI/ForumAPI.csproj", "ForumAPI/"]
-<<<<<<< HEAD
-=======
-COPY ["../../RepositoryLayer/RepositoryLayer.csproj", "RepositoryLayer/"]
-COPY ["../../ServiceLayer/ServiceLayer.csproj", "ServiceLayer/"]
->>>>>>> ae699fa574a019d5d45e41e126d93c58d66fde48
 RUN dotnet restore "./ForumAPI/ForumAPI.csproj"
 COPY . .
 WORKDIR "/src/ForumAPI"
