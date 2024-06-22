@@ -1,9 +1,8 @@
 ﻿using ForumAPI.Dtos;
-using ServiceLayer.Models;
-using ServiceLayer.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Data;
+using ServiceLayer.Models;
+using ServiceLayer.Services.Interfaces;
 
 namespace ForumAPI.Controllers
 {
@@ -18,7 +17,7 @@ namespace ForumAPI.Controllers
         {
             _postService = postService;
         }
-        //View all(forum)
+
         [HttpGet("get/forum/{ForumId}")]
         public async Task<IActionResult> GetForumPosts(int ForumId)
         {
@@ -29,24 +28,7 @@ namespace ForumAPI.Controllers
                 return BadRequest("No post found in this forum.");
             }
 
-            List<PostDto> ps = new List<PostDto>();
-            foreach(PostModel p in posts)
-            {
-                ps.Add(new PostDto()
-                {
-                    Id = p.Id,
-                    Title = p.Title,
-                    Content = p.Content,
-                    AuthorId = p.AuthorId,
-                    DateTime = p.DateTime,
-                    Audience = p.Audience,
-                    Url = p.Url,
-                    ForumId = p.ForumId
-                });
-            }
-            
-
-            return Ok(ps);
+            return Ok(MapToDtoList(posts));
         }
 
         [HttpGet("get/user/{UserId}")]
@@ -59,28 +41,9 @@ namespace ForumAPI.Controllers
                 return BadRequest("No post found for this user.");
             }
 
-            List<PostDto> ps = new List<PostDto>();
-            foreach (PostModel p in posts)
-            {
-                ps.Add(new PostDto()
-                {
-                    Id = p.Id,
-                    Title = p.Title,
-                    Content = p.Content,
-                    AuthorId = p.AuthorId,
-                    DateTime = p.DateTime,
-                    Audience = p.Audience,
-                    Url = p.Url,
-                    ForumId = p.ForumId
-                });
-            }
-
-
-            return Ok(ps);
+            return Ok(MapToDtoList(posts));
         }
 
-
-        //add
         [HttpPost("add")]
         public async Task<IActionResult> AddPost([FromBody] PostDto p)
         {
@@ -93,22 +56,19 @@ namespace ForumAPI.Controllers
                 DateTime = p.DateTime,
                 Url = p.Url,
                 ForumId = p.ForumId
-                
             };
+
             PostModel postCreated = await _postService.Create(post);
-            return Ok(postCreated);
+            return Ok(MapToDto(postCreated));
         }
 
-
-        //delete
         [HttpDelete("delete/{postId}")]
         public IActionResult DeletePost(int postId)
         {
             try
             {
                 _postService.Delete(postId);
-
-                return Ok(); 
+                return Ok();
             }
             catch (Exception ex)
             {
@@ -117,31 +77,19 @@ namespace ForumAPI.Controllers
             }
         }
 
-        //get 
         [HttpGet("get/{id}")]
         public async Task<IActionResult> GetPost(int id)
         {
-            PostModel p = await _postService.Get(id);
+            PostModel post = await _postService.Get(id);
 
-            if (p == null)
+            if (post == null)
             {
                 return BadRequest("No post found with this id.");
             }
 
-            PostDto post = new PostDto()
-            {
-                Id = p.Id,
-                Title = p.Title,
-                Content = p.Content,
-                AuthorId = p.AuthorId,
-                DateTime = p.DateTime,
-                Audience = p.Audience,
-                Url = p.Url,
-                ForumId =p.ForumId
-            };
-
-            return Ok(post);
+            return Ok(MapToDto(post));
         }
+
         [HttpGet("get/publicforum")]
         [AllowAnonymous]
         public async Task<IActionResult> GetPublicForumPosts()
@@ -153,25 +101,27 @@ namespace ForumAPI.Controllers
                 return BadRequest("No post found in this forum.");
             }
 
-            List<PostDto> ps = new List<PostDto>();
-            foreach (PostModel p in posts)
-            {
-                ps.Add(new PostDto()
-                {
-                    Id = p.Id,
-                    Title = p.Title,
-                    Content = p.Content,
-                    AuthorId = p.AuthorId,
-                    DateTime = p.DateTime,
-                    Audience = p.Audience,
-                    Url = p.Url,
-                    ForumId = p.ForumId
-                });
-            }
-
-
-            return Ok(ps);
+            return Ok(MapToDtoList(posts));
         }
 
+        private PostDto MapToDto(PostModel post)
+        {
+            return new PostDto
+            {
+                Id = post.Id,
+                Title = post.Title,
+                Content = post.Content,
+                AuthorId = post.AuthorId,
+                DateTime = post.DateTime,
+                Audience = post.Audience,
+                Url = post.Url,
+                ForumId = post.ForumId
+            };
+        }
+
+        private List<PostDto> MapToDtoList(IEnumerable<PostModel> posts)
+        {
+            return posts.Select(p => MapToDto(p)).ToList();
+        }
     }
 }
