@@ -1,4 +1,5 @@
 ﻿using ForumAPI.Dtos;
+using ForumAPI.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ServiceLayer.Models;
@@ -45,7 +46,7 @@ namespace ForumAPI.Controllers
         }
 
         [HttpPost("add")]
-        public async Task<IActionResult> AddPost([FromBody] PostDto p)
+        public async Task<IActionResult> AddPost([FromBody] PostAddDto p)
         {
             PostModel post = new PostModel
             {

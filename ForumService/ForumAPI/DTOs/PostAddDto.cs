@@ -1,13 +1,7 @@
-﻿using RepositoryLayer.Entities;
-using ServiceLayer.Models;
-using Microsoft.Extensions.Hosting;
-using System.Reflection.Metadata;
-
-namespace ForumAPI.Dtos
+﻿namespace ForumAPI.DTOs
 {
-    public class PostDto
+    public class PostAddDto
     {
-        public required int Id { get; set; }
         public string Title { get; set; } = string.Empty;
         public string Content { get; set; } = string.Empty;
         public required int AuthorId { get; set; }

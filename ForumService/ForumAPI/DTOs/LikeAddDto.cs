@@ -1,8 +1,7 @@
-﻿namespace ForumAPI.Dtos
+﻿namespace ForumAPI.DTOs
 {
-    public class LikeDto
+    public class LikeAddDto
     {
-        public required int Id { get; set; }
         public required int PostId { get; set; }
         public required int ResponseId { get; set; }
         public required int UserId { get; set; }
