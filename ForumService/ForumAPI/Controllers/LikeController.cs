@@ -1,4 +1,4 @@
-﻿using ForumAPI.DTOs;
+﻿using ForumAPI.Dtos;
 using ServiceLayer.Models;
 using ServiceLayer.Services;
 using ServiceLayer.Services.Interfaces;
@@ -11,7 +11,7 @@ namespace ForumAPI.Controllers
     [Authorize]
     [ApiController]
     [Route("api/[controller]")]
-    public class LikeController : Controller
+    public class LikeController : ControllerBase
     {
         private readonly ILikeService _likeService;
 
@@ -24,11 +24,11 @@ namespace ForumAPI.Controllers
         public async Task<IActionResult> GetPostLikes(int postId)
         {
             List<LikeModel> likesModel = await _likeService.GetAllPost(postId);
-            List<LikeDTO> ls = new List<LikeDTO>();
+            List<LikeDto> ls = new List<LikeDto>();
             if(likesModel.Count == 0) { return Ok("No likes for this post yet."); }
             foreach (LikeModel l in likesModel)
             {
-                ls.Add(new LikeDTO()
+                ls.Add(new LikeDto()
                 {
                     Id = l.Id,
                     UserId = l.UserId,
@@ -42,11 +42,11 @@ namespace ForumAPI.Controllers
         public async Task<IActionResult> GetResponseLikes(int responseId)
         {
             List<LikeModel> likesModel = await _likeService.GetAllResponse(responseId);
-            List<LikeDTO> ls = new List<LikeDTO>();
+            List<LikeDto> ls = new List<LikeDto>();
             if (likesModel.Count == 0) { return Ok("No likes for this response yet."); }
             foreach (LikeModel l in likesModel)
             {
-                ls.Add(new LikeDTO()
+                ls.Add(new LikeDto()
                 {
                     Id = l.Id,
                     UserId = l.UserId,
@@ -61,11 +61,11 @@ namespace ForumAPI.Controllers
         public async Task<IActionResult> GetUserLikes(int userId)
         {
             List<LikeModel> likesModel = await _likeService.GetAllUser(userId);
-            List<LikeDTO> ls = new List<LikeDTO>();
+            List<LikeDto> ls = new List<LikeDto>();
             if (likesModel.Count == 0) { return Ok("You have not liked anything user yet."); }
             foreach (LikeModel l in likesModel)
             {
-                ls.Add(new LikeDTO()
+                ls.Add(new LikeDto()
                 {
                     Id = l.Id,
                     UserId = l.UserId,
@@ -78,7 +78,7 @@ namespace ForumAPI.Controllers
 
         //add
         [HttpPost("like")]
-        public IActionResult Like([FromBody] LikeDTO l)
+        public IActionResult Like([FromBody] LikeDto l)
         {
             LikeModel like = new LikeModel
             {
@@ -93,7 +93,7 @@ namespace ForumAPI.Controllers
 
         //delete
         [HttpDelete("unlike")]
-        public IActionResult UnLike([FromBody] LikeDTO l)
+        public IActionResult UnLike([FromBody] LikeDto l)
         {
             LikeModel like = new LikeModel
             {

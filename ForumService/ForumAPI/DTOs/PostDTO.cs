@@ -3,11 +3,11 @@ using ServiceLayer.Models;
 using Microsoft.Extensions.Hosting;
 using System.Reflection.Metadata;
 
-namespace ForumAPI.DTOs
+namespace ForumAPI.Dtos
 {
-    public class PostDTO
+    public class PostDto
     {
-        public int? Id { get; set; }
+        public int Id { get; set; }
         public string Title { get; set; } = string.Empty;
         public string Content { get; set; } = string.Empty;
         public required int AuthorId { get; set; }

@@ -39,7 +39,7 @@ namespace ServiceLayer.Services
             if (post == null)
                 throw new ArgumentException("Post cannot be null.");
 
-            PostEntity existingPost = await _postRepository.GetByIdAsync((int)post.Id);
+            PostEntity existingPost = await _postRepository.GetByIdAsync(post.Id);
             if (existingPost != null)
             {
                 existingPost.Title = post.Title;

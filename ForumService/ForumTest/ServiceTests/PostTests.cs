@@ -57,7 +57,7 @@ namespace ForumTest.ServiceTests
         {
             var postModel = new PostModel { Id = 1, Title = "Test" };
 
-            _postRepositoryMock.Setup(repo => repo.GetByIdAsync((int)postModel.Id)).ReturnsAsync((PostEntity)null);
+            _postRepositoryMock.Setup(repo => repo.GetByIdAsync(postModel.Id)).ReturnsAsync((PostEntity)null);
 
             var exception = await Assert.ThrowsExceptionAsync<ArgumentException>(async () => await _postService.Update(postModel));
             Assert.AreEqual("There is no post found to update.", exception.Message);
@@ -69,7 +69,7 @@ namespace ForumTest.ServiceTests
             var postModel = new PostModel { Id = 1, Title = "Test", Content = "Content", DateTime = DateTime.Now, Audience = "General", AuthorId = 1, ForumId = 1 };
             var postEntity = new PostEntity { Id = 1, Title = "Test", Content = "Content", DateTime = DateTime.Now, Audience = "General", AuthorId = 1, ForumId = 1 };
 
-            _postRepositoryMock.Setup(repo => repo.GetByIdAsync((int)postModel.Id)).ReturnsAsync(postEntity);
+            _postRepositoryMock.Setup(repo => repo.GetByIdAsync(postModel.Id)).ReturnsAsync(postEntity);
 
             await _postService.Update(postModel);
 

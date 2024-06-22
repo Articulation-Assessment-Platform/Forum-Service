@@ -45,7 +45,7 @@ namespace ServiceLayer.Services
                 throw new ArgumentException("Response cannot be null.");
             }
 
-            ResponseEntity existingResponse = await _responseRepository.GetByIdAsync((int)Response.Id);
+            ResponseEntity existingResponse = await _responseRepository.GetByIdAsync(Response.Id);
             if (existingResponse != null)
             {
                 existingResponse.Content = Response.Content;

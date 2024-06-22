@@ -1,4 +1,4 @@
-﻿using ForumAPI.DTOs;
+﻿using ForumAPI.Dtos;
 using ServiceLayer.Models;
 using ServiceLayer.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -10,7 +10,7 @@ namespace ForumAPI.Controllers
     [Authorize(Roles = "SpeechTherapist")]
     [ApiController]
     [Route("api/[controller]")]
-    public class PostController : Controller
+    public class PostController : ControllerBase
     {
         private readonly IPostService _postService;
 
@@ -29,10 +29,10 @@ namespace ForumAPI.Controllers
                 return BadRequest("No post found in this forum.");
             }
 
-            List<PostDTO> ps = new List<PostDTO>();
+            List<PostDto> ps = new List<PostDto>();
             foreach(PostModel p in posts)
             {
-                ps.Add(new PostDTO()
+                ps.Add(new PostDto()
                 {
                     Id = p.Id,
                     Title = p.Title,
@@ -59,10 +59,10 @@ namespace ForumAPI.Controllers
                 return BadRequest("No post found for this user.");
             }
 
-            List<PostDTO> ps = new List<PostDTO>();
+            List<PostDto> ps = new List<PostDto>();
             foreach (PostModel p in posts)
             {
-                ps.Add(new PostDTO()
+                ps.Add(new PostDto()
                 {
                     Id = p.Id,
                     Title = p.Title,
@@ -82,7 +82,7 @@ namespace ForumAPI.Controllers
 
         //add
         [HttpPost("add")]
-        public async Task<IActionResult> AddPost([FromBody] PostDTO p)
+        public async Task<IActionResult> AddPost([FromBody] PostDto p)
         {
             PostModel post = new PostModel
             {
@@ -102,7 +102,7 @@ namespace ForumAPI.Controllers
 
         //delete
         [HttpDelete("delete/{postId}")]
-        public async Task<IActionResult> DeletePost(int postId)
+        public IActionResult DeletePost(int postId)
         {
             try
             {
@@ -128,7 +128,7 @@ namespace ForumAPI.Controllers
                 return BadRequest("No post found with this id.");
             }
 
-            PostDTO post = new PostDTO()
+            PostDto post = new PostDto()
             {
                 Id = p.Id,
                 Title = p.Title,
@@ -153,10 +153,10 @@ namespace ForumAPI.Controllers
                 return BadRequest("No post found in this forum.");
             }
 
-            List<PostDTO> ps = new List<PostDTO>();
+            List<PostDto> ps = new List<PostDto>();
             foreach (PostModel p in posts)
             {
-                ps.Add(new PostDTO()
+                ps.Add(new PostDto()
                 {
                     Id = p.Id,
                     Title = p.Title,

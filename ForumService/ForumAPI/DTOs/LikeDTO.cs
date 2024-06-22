@@ -1,10 +1,10 @@
-﻿namespace ForumAPI.DTOs
+﻿namespace ForumAPI.Dtos
 {
-    public class LikeDTO
+    public class LikeDto
     {
-        public int? Id { get; set; }
+        public int Id { get; set; }
         public required int PostId { get; set; }
-        public int? ResponseId { get; set; }
+        public int ResponseId { get; set; }
         public required int UserId { get; set; }
     }
 }

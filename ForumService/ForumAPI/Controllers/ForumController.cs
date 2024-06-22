@@ -1,4 +1,4 @@
-﻿using ForumAPI.DTOs;
+﻿using ForumAPI.Dtos;
 using ServiceLayer.Models;
 using ServiceLayer.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -11,7 +11,7 @@ namespace ForumAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ForumController : Controller
+    public class ForumController : ControllerBase
     {
         private readonly IforumService _forumService;
         public ForumController(IforumService forumService)
@@ -23,26 +23,17 @@ namespace ForumAPI.Controllers
         [HttpGet("forums/public")]
         public async Task<IActionResult> GetAllPublicForums()
         {
-            var identity = HttpContext.User.Identity as ClaimsIdentity;
-            var roleClaim = identity.FindFirst(ClaimTypes.Role);
-            List<ForumModel> forums = new List<ForumModel>();
-            if(roleClaim == null)
-            {
-                forums = await _forumService.GetForums(null);
-            }
-            else
-            {
-                forums = await _forumService.GetForums(roleClaim.Value);
-            }
+            List<ForumModel> forums = await _forumService.GetForums("None");
+            
 
             if (forums == null) return BadRequest("No forums found.");
 
-            List<ForumDTO> frms = new List<ForumDTO>();
+            List<ForumDto> frms = new List<ForumDto>();
 
             foreach (ForumModel forum in forums)
             {
 
-                frms.Add(new ForumDTO
+                frms.Add(new ForumDto
                 {
                     Id = forum.Id,
                     Audience = forum.Audience,
@@ -68,11 +59,11 @@ namespace ForumAPI.Controllers
 
             if (forums == null) return BadRequest("No forums found.");
 
-            List<ForumDTO> frms = new List<ForumDTO>();
+            List<ForumDto> frms = new List<ForumDto>();
 
             foreach (ForumModel forum in forums)
             {
-                frms.Add(new ForumDTO
+                frms.Add(new ForumDto
                 {
                     Id = forum.Id,
                     Audience = forum.Audience,

@@ -1,4 +1,4 @@
-﻿using ForumAPI.DTOs;
+﻿using ForumAPI.Dtos;
 using ServiceLayer.Models;
 using ServiceLayer.Services;
 using ServiceLayer.Services.Interfaces;
@@ -10,7 +10,7 @@ namespace ForumAPI.Controllers
     [Authorize]
     [ApiController]
     [Route("api/[controller]")]
-    public class ResponseController : Controller
+    public class ResponseController : ControllerBase
     {
         private readonly IResponseService _responseService;
         public ResponseController(IResponseService responseService)
@@ -29,10 +29,10 @@ namespace ForumAPI.Controllers
                 return BadRequest("No response found in this forum.");
             }
 
-            List<ResponseDTO> ps = new List<ResponseDTO>();
+            List<ResponseDto> ps = new List<ResponseDto>();
             foreach (ResponseModel p in responses)
             {
-                ps.Add(new ResponseDTO()
+                ps.Add(new ResponseDto()
                 {
                     Id = p.Id,
                     Content = p.Content,
@@ -51,7 +51,7 @@ namespace ForumAPI.Controllers
 
         //add
         [HttpPost("add")]
-        public IActionResult AddResponse([FromBody] ResponseDTO p)
+        public IActionResult AddResponse([FromBody] ResponseDto p)
         {
             ResponseModel response = new ResponseModel
             {
@@ -72,7 +72,7 @@ namespace ForumAPI.Controllers
 
         //delete
         [HttpDelete("delete")]
-        public IActionResult DeleteResponse([FromBody] ResponseDTO p)
+        public IActionResult DeleteResponse([FromBody] ResponseDto p)
         {
             ResponseModel response = new ResponseModel
             {
@@ -85,7 +85,7 @@ namespace ForumAPI.Controllers
                 PostId = p.PostId,
                 ResponseId = p.ResponseId
             };
-            _responseService.Delete((int)response.Id);
+            _responseService.Delete(response.Id);
             return Ok();
         }
 
@@ -100,7 +100,7 @@ namespace ForumAPI.Controllers
                 return BadRequest("No response found with this id.");
             }
 
-            ResponseDTO response = new ResponseDTO()
+            ResponseDto response = new ResponseDto()
             {
                 Id = p.Id,
                 Content = p.Content,
