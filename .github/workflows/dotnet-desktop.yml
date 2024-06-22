@@ -47,7 +47,7 @@ jobs:
           dotnet test 'ForumService/ForumTest/ForumTest.csproj' --configuration Release /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
   sonarqube:
     needs: test
-    name: Build and analyze
+    name: Analyze
     runs-on: windows-latest
     steps:
       - name: Set up JDK 17
