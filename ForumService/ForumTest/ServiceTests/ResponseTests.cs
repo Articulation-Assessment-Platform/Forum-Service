@@ -1,7 +1,7 @@
-﻿using ForumRepositoryLayer.Entities;
-using ForumRepositoryLayer.Services.Interfaces;
-using ForumServiceLayer.Models;
-using ForumServiceLayer.Services;
+﻿using RepositoryLayer.Entities;
+using RepositoryLayer.Services.Interfaces;
+using ServiceLayer.Models;
+using ServiceLayer.Services;
 using Moq;
 
 namespace ForumTest.ServiceTests

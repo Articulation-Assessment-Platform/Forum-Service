@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using ForumRepositoryLayer.Entities;
-using ForumRepositoryLayer.Services.Interfaces;
-using ForumServiceLayer.Models;
-using ForumServiceLayer.Services;
+using RepositoryLayer.Entities;
+using RepositoryLayer.Services.Interfaces;
+using ServiceLayer.Models;
+using ServiceLayer.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
