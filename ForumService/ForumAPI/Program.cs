@@ -94,7 +94,7 @@ builder.Services.AddSwaggerGen(c =>
 });
 builder.Services.AddDbContext<ForumContext>(options =>
 {
-    options.UseNpgsql(builder.Configuration.GetConnectionString("PostgreSqlConnection"));
+    options.UseNpgsql(builder.Configuration["ConnectionStrings:PostgreSqlConnection"]);
 });
 builder.Services.AddCors(options =>
 {
