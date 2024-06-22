@@ -1,6 +1,6 @@
 ﻿using ForumAPI.Dtos;
-using ServiceLayer.Models;
-using ServiceLayer.Services.Interfaces;
+using ForumAPI.Models;
+using ForumAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;

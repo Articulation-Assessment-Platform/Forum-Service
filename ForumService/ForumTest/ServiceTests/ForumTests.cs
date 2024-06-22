@@ -1,6 +1,6 @@
-﻿using RepositoryLayer.Entities;
-using RepositoryLayer.Services.Interfaces;
-using ServiceLayer.Services;
+﻿using ForumAPI.Entities;
+using ForumAPI.Services.Interfaces;
+using ForumAPI.Services;
 using Moq;
 using System;
 using System.Collections.Generic;

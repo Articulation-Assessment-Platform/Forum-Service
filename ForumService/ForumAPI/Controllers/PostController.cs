@@ -2,8 +2,8 @@
 using ForumAPI.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using ServiceLayer.Models;
-using ServiceLayer.Services.Interfaces;
+using ForumAPI.Models;
+using ForumAPI.Services.Interfaces;
 
 namespace ForumAPI.Controllers
 {

@@ -1,7 +1,7 @@
 ﻿using ForumAPI.Dtos;
-using ServiceLayer.Models;
-using ServiceLayer.Services;
-using ServiceLayer.Services.Interfaces;
+using ForumAPI.Models;
+using ForumAPI.Services;
+using ForumAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

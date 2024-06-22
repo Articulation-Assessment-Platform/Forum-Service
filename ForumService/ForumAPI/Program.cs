@@ -1,9 +1,9 @@
-using RepositoryLayer.Entities;
-using RepositoryLayer.Repositories;
-using RepositoryLayer.Repositories.Interfaces;
-using RepositoryLayer.Services.Interfaces;
-using ServiceLayer.Services;
-using ServiceLayer.Services.Interfaces;
+using ForumAPI.Entities;
+using ForumAPI.Repositories;
+using ForumAPI.Repositories.Interfaces;
+using ForumAPI.Services.Interfaces;
+using ForumAPI.Services;
+using ForumAPI.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Text;
